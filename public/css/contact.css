@@ -1,0 +1,270 @@
+/* =========================
+   CONTACT: BASE LAYOUT
+   ========================= */
+
+.vist-contact-page,
+.vist-contact-page *{
+  box-sizing: border-box;
+}
+
+.vist-contact-page{
+  padding: 40px 16px 70px;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.vist-contact-wrap{
+  max-width: 920px;
+	margin-top: 140px;
+}
+
+.vist-contact-panel{
+  border-radius: 16px;
+  padding: 28px 22px;
+  overflow: hidden;
+}
+
+.vist-contact-title{
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.vist-contact-subtitle{
+  margin: 0 0 18px;
+  max-width: 760px;
+}
+
+.vist-contact-form .form-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.vist-contact-form .form-message{
+  grid-column: 1 / -1;
+}
+
+.vist-contact-page .form-group label{
+  display: block;
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+
+.vist-contact-page .form-group input,
+.vist-contact-page .form-group textarea{
+  width: 100%;
+  border-radius: 12px;
+  padding: 12px 12px;
+  outline: none;
+  transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+.vist-contact-page .form-actions{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.vist-contact-page .vist-btn{
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.vist-contact-page .vist-btn:hover{
+  transform: translateY(-1px);
+}
+
+.vist-contact-page .form-note{
+  font-size: 13px;
+}
+
+/* Honeypot: завжди ховаємо */
+.vist-contact-page .hp-field{
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* Mobile */
+@media (max-width: 720px){
+  .vist-contact-page{ padding-top: 22px; }
+  .vist-contact-form .form-grid{ grid-template-columns: 1fr; }
+  .vist-contact-title{ font-size: 22px; }
+}
+
+
+/* =========================
+   THEME: LIGHT
+   Вмикається класом: .theme-light
+   ========================= */
+
+.vist-contact-page.theme-light{
+  background: #f4f6fb;
+}
+
+.vist-contact-page.theme-light .vist-contact-panel{
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.10);
+}
+
+.vist-contact-page.theme-light .vist-contact-title{
+  color:#111827;
+}
+
+.vist-contact-page.theme-light .vist-contact-subtitle{
+  color:#4b5563;
+}
+
+.vist-contact-page.theme-light .form-group label{
+  color:#374151;
+}
+
+.vist-contact-page.theme-light .form-group input,
+.vist-contact-page.theme-light .form-group textarea{
+  background:#f7f8fc;
+  border:1px solid #d7dceb;
+  color:#111827;
+}
+
+.vist-contact-page.theme-light .form-group input::placeholder,
+.vist-contact-page.theme-light .form-group textarea::placeholder{
+  color:#9aa3b2;
+}
+
+.vist-contact-page.theme-light .form-group input:focus,
+.vist-contact-page.theme-light .form-group textarea:focus{
+  background:#ffffff;
+  border-color:#00008B;
+  box-shadow: 0 0 0 3px rgba(0,0,139,0.12);
+}
+
+.vist-contact-page.theme-light .vist-btn{
+  background:#00008B;
+  color:#ffffff;
+}
+
+.vist-contact-page.theme-light .vist-btn:hover{
+  filter: brightness(1.06);
+}
+
+.vist-contact-page.theme-light .form-note{
+  color:#4b5563;
+}
+
+
+/* =========================
+   THEME: DARK
+   Вмикається класом: .theme-dark
+   ========================= */
+
+.vist-contact-page.theme-dark{
+  background: #0b1220;
+}
+
+.vist-contact-page.theme-dark .vist-contact-panel{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.vist-contact-page.theme-dark .vist-contact-title{
+  color:#ffffff;
+}
+
+.vist-contact-page.theme-dark .vist-contact-subtitle{
+  color: rgba(255,255,255,0.80);
+}
+
+.vist-contact-page.theme-dark .form-group label{
+  color: rgba(255,255,255,0.82);
+}
+
+.vist-contact-page.theme-dark .form-group input,
+.vist-contact-page.theme-dark .form-group textarea{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color:#ffffff;
+}
+
+.vist-contact-page.theme-dark .form-group input::placeholder,
+.vist-contact-page.theme-dark .form-group textarea::placeholder{
+  color: rgba(255,255,255,0.55);
+}
+
+.vist-contact-page.theme-dark .form-group input:focus,
+.vist-contact-page.theme-dark .form-group textarea:focus{
+  border-color: rgba(255,255,255,0.30);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(0,0,139,0.28);
+}
+
+.vist-contact-page.theme-dark .vist-btn{
+  background:#00008B;
+  color:#ffffff;
+}
+
+.vist-contact-page.theme-dark .vist-btn:hover{
+  filter: brightness(1.08);
+}
+
+.vist-contact-page.theme-dark .form-note{
+  color: rgba(255,255,255,0.75);
+}
+
+.contacts-content {
+	display: grid;
+    justify-content: center; /* Вирівнює по горизонталі */
+    align-items: center;      /* Вирівнює по вертикалі */
+	margin-top: 140px;
+	margin-left: 50px;
+	 
+}
+
+.contacts-content h1 {
+    text-align: center;
+	 
+}	 
+
+
+.contacts-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Ліва колонка — форма */
+.vist-contact-wrap {
+  flex: 1 1 50%;
+}
+
+/* Права колонка — контакти */
+.contacts-content {
+  flex: 1 1 50%;
+}
+
+
+@media (max-width: 768px) {
+  .contacts-layout {
+    flex-direction: column;
+  }
+
+  .vist-contact-wrap,
+  .contacts-content {
+    width: 100%;
+  }
+}

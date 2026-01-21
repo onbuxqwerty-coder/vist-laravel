@@ -1,0 +1,193 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Product extends Model
+{
+    /**
+     * Поля для масового заповнення.
+     * Відповідають структурі вашої БД (title, category, is_active тощо).
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'image',
+        'description',
+        'category',
+        'price',
+        'currency',
+        'is_active',
+        'status',
+    ];
+
+    /**
+     * Перетворення типів даних.
+     */
+    protected $casts = [
+        'price' => 'decimal:2',
+        'is_active' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
+     * Статуси продуктів.
+     */
+    public const STATUS_IN_STOCK = 'in_stock';
+    public const STATUS_OUT_OF_STOCK = 'out_of_stock';
+    public const STATUS_BY_ORDER = 'by_order';
+
+    /**
+     * Константи категорій (згідно з ENUM у вашій БД).
+     */
+    public const TYPE_WORKSTATION = 'workstation';
+    public const TYPE_SERVER = 'server';
+    public const TYPE_IPC = 'ipc'; 
+    public const TYPE_UPS = 'ups';
+
+    // --- ЗВ'ЯЗКИ (RELATIONS) ---
+
+    /**
+     * Головне зображення з таблиці product_images.
+     */
+    public function primaryImage(): HasOne
+    {
+        return $this->hasOne(ProductImage::class)->where('is_primary', 1);
+    }
+
+    /**
+     * Усі зображення продукту.
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class)->orderBy('sort_order');
+    }
+
+    /**
+     * Характеристики продукту.
+     */
+    public function specs(): HasMany
+    {
+        return $this->hasMany(ProductSpec::class)->orderBy('sort_order');
+    }
+
+    /**
+     * Ціни продукту (якщо будете використовувати).
+     */
+    public function prices(): HasMany
+    {
+        return $this->hasMany(ProductPrice::class);
+    }
+
+    /**
+     * Схожі продукти.
+     */
+    public function relatedProducts(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_related',
+            'product_id',
+            'related_id'
+        )->withPivot('relation_type');
+    }
+
+    // --- АКСЕСОРИ (ACCESSORS) ---
+
+    /**
+     * Отримати URL головного зображення.
+     * Пріоритет: product_images (is_primary=1), інакше перше зображення, інакше placeholder.
+     */
+    public function getMainImageAttribute(): string
+    {
+        // Шукаємо primary зображення
+        $primaryImage = $this->images()->where('is_primary', 1)->first();
+        
+        if ($primaryImage) {
+            return asset($primaryImage->image);
+        }
+        
+        // Якщо немає primary, беремо перше
+        $firstImage = $this->images()->first();
+        if ($firstImage) {
+            return asset($firstImage->image);
+        }
+        
+        // Якщо немає жодного в таблиці images, беремо з поля image
+        if ($this->image) {
+            return asset($this->image);
+        }
+        
+        // Інакше placeholder
+        return asset('img/placeholder-product.jpg');
+    }
+
+    /**
+     * Форматована ціна.
+     */
+    public function getPriceTextAttribute(): string
+    {
+        if (!$this->price || $this->price == 0) {
+            return 'Ціна за запитом';
+        }
+        return number_format($this->price, 0, ',', ' ') . ' ' . ($this->currency ?? 'UAH');
+    }
+
+    /**
+     * Мітка категорії українською.
+     */
+    public function getTypeLabelAttribute(): string
+    {
+        return match($this->category) {
+            self::TYPE_WORKSTATION => 'Робоча станція',
+            self::TYPE_SERVER => 'Сервер',
+            self::TYPE_IPC => 'Промисловий ПК',
+            self::TYPE_UPS => 'ДБЖ (UPS)',
+            default => 'Обладнання',
+        };
+    }
+
+    /**
+     * Мітка статусу українською.
+     */
+    public function getStatusLabelAttribute(): string
+    {
+        return match($this->status) {
+            self::STATUS_IN_STOCK => 'В наявності',
+            self::STATUS_OUT_OF_STOCK => 'Немає в наявності',
+            self::STATUS_BY_ORDER => 'Під замовлення',
+            default => 'Невідомо',
+        };
+    }
+
+    // --- ЗАГОТОВКИ ЗАПИТІВ (SCOPES) ---
+
+    /**
+     * Фільтр за категорією.
+     */
+    public function scopeOfType($query, string $type)
+    {
+        return $query->where('category', $type);
+    }
+
+    /**
+     * Тільки активні продукти.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
+    /**
+     * З завантаженими зображеннями та специфікаціями.
+     */
+    public function scopeWithDetails($query)
+    {
+        return $query->with(['images', 'specs']);
+    }
+}

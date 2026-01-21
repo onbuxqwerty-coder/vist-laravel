@@ -1,0 +1,147 @@
+/* footer.css */
+
+/* Базові стилі для футера */
+footer {
+    width: 100%;
+    background-color: #260668;
+    color: #fff;
+    padding: 20px;
+    margin-top: auto;
+}
+
+/* Стилі для обгортки футера */
+.footer_wrapper .footer_contact p {
+    font-size: 16px !important;
+    line-height: 0.6 !important;
+    color: #fff !important;
+    font-family: Arial, sans-serif !important;
+    text-align: left !important; /* Додано для явного вирівнювання */
+    margin-bottom: 0 !important; /* Додано для узгодженості */
+
+	
+}
+
+.footer_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 100px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+/* Стилі для логотипу у футері */
+.footer_logo img {
+    max-width: 110px;
+    height: auto;
+}
+
+/* Стилі для контактної інформації, меню та сервісів */
+.footer_contact, .footer_menu, .footer_service {
+    font-family: Arial, sans-serif !important;
+    font-size: 16px !important;
+    color: #fff !important;
+	margin-left: 30px;
+}
+
+.footer_contact {
+    line-height: 0.6 !important;
+}
+
+.footer_menu, .footer_service {
+    line-height: 1.5;
+}
+
+/* Стилі для соціальних мереж */
+.social_networks {
+    display: flex;
+    
+    gap: 10px;
+    align-items: center;
+}
+
+.facebook_logo img,
+.instagram_logo img,
+.linkedIn_logo img,
+.twitter_logo img {
+    display: block;
+}
+
+/* Стилі для кнопки "Вгору" */
+.scroll-top {
+    display: inline-block;
+    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Адаптивні стилі для смартфонів */
+@media (max-width: 768px) {
+    .footer_wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Розташування логотипу та контактів поруч */
+    .footer_logo, .footer_contact {
+        display: flex;
+        vertical-align: top;
+    }
+
+    .footer_logo {
+        margin-right: 15px;
+    }
+
+    .footer_contact {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* Розташування меню та сервісів поруч */
+    nav {
+        
+        vertical-align: top;
+        margin-right: 10px;
+    }
+
+    .footer_menu, .footer_service {
+        font-size: 14px;
+        line-height: 1.6;
+        min-width: 150px;
+    }
+
+    /* Стилі для соціальних мереж */
+    .social_networks {
+        flex-direction: row;
+        gap: 15px;
+        justify-content: center;
+    }
+
+}
+
+/* Додаткові налаштування для дуже малих екранів (до 480px) */
+@media (max-width: 480px) {
+    .footer_contact, .footer_menu, .footer_service {
+        font-size: 12px;
+    }
+
+    .footer_logo img {
+        max-width: 80px;
+    }
+
+    .footer_logo {
+        margin-right: 10px;
+    }
+
+    .footer_menu, .footer_service {
+        min-width: 120px;
+    }
+
+    .social_networks {
+        gap: 10px;
+    }
+}

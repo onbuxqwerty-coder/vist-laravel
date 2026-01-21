@@ -1,0 +1,299 @@
+/* ========================================
+   VIST PRODUCT CARD - ОПТИМІЗОВАНІ СТИЛІ
+   ======================================== */
+
+.vist-product-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid ##007bff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.vist-product-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+/* ========================================
+   ЗОБРАЖЕННЯ ПРОДУКТУ - КЛЮЧОВІ ПРАВИЛА
+   ======================================== */
+
+.vist-card-image {
+    position: relative;
+    width: 100%;
+    /* Фіксована висота контейнера для рівномірності карток */
+    height: 280px;
+    overflow: hidden;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vist-card-image img {
+    /* КРИТИЧНО ВАЖЛИВО: зображення масштабується всередині контейнера */
+    width: 100%;
+    height: 100%;
+    /* object-fit визначає, як зображення вписується в контейнер */
+    object-fit: contain; /* Показує все зображення, зберігаючи пропорції */
+    /* або object-fit: cover; - заповнює весь контейнер, обрізаючи краї */
+    
+    /* Плавна поява */
+    transition: transform 0.3s ease;
+}
+
+/* Збільшення при наведенні */
+.vist-card-image:hover img {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   КОНТЕНТ КАРТКИ
+   ======================================== */
+
+.vist-card-type {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 6px 6px 8px;
+    background: #f0f0f0;
+    color: #666;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+
+.vist-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 16px 8px;
+    line-height: 1.3;
+}
+
+.vist-card-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 16px 16px;
+    line-height: 1.5;
+}
+
+/* ========================================
+   ХАРАКТЕРИСТИКИ
+   ======================================== */
+
+.vist-card-specs {
+    list-style: none;
+    padding: 0 16px;
+    margin: 0 0 16px;
+}
+
+.vist-card-specs li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+
+.vist-card-specs li:before {
+    content: "✓";
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.vist-card-specs li:last-child {
+    border-bottom: none;
+}
+
+/* ========================================
+   МЕТАІНФОРМАЦІЯ (статус + ціна)
+   ======================================== */
+
+.vist-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    margin-top: auto;
+    border-top: 1px solid #f0f0f0;
+}
+
+.vist-status {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.vist-status.ok {
+    background: #d4edda;
+    color: #155724;
+}
+
+.vist-status.warn {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.vist-status.danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.vist-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* ========================================
+   КНОПКА
+   ======================================== */
+
+.vist-btn-card {
+    display: block;
+    padding: 12px 24px;
+    margin: 0 16px 16px;
+    background: #007bff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.vist-btn-card:hover {
+    background: #0056b3;
+}
+
+/* ========================================
+   АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ
+   ======================================== */
+
+@media (max-width: 768px) {
+    .vist-card-image {
+        height: 220px; /* Менша висота на мобільних */
+    }
+    
+    .vist-card-title {
+        font-size: 1.1rem;
+    }
+    
+    .vist-card-subtitle,
+    .vist-card-specs li {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vist-card-image {
+        height: 200px;
+    }
+}
+
+/* ========================================
+   GRID ДЛЯ СПИСКУ КАРТОК (якщо потрібно)
+   ======================================== */
+
+.vist-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 24px;
+}
+
+@media (max-width: 768px) {
+    .vist-products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vist-products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   ДЕТАЛЬНА СТОРІНКА ПРОДУКТУ
+   ======================================== */
+
+/* Галерея зображень на детальній сторінці */
+.product-detail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.product-main-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.product-thumbnail-list {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.product-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #f8f8f8;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    padding: 8px;
+}
+
+.product-thumbnail:hover,
+.product-thumbnail.active {
+    border-color: #007bff;
+}
+
+/* ========================================
+   ВАРІАЦІЇ PRODUCT-CARD
+   ======================================== */
+
+/* Якщо потрібна горизонтальна картка */
+.vist-product-card--horizontal {
+    flex-direction: row;
+}
+
+.vist-product-card--horizontal .vist-card-image {
+    width: 300px;
+    height: auto;
+    min-height: 250px;
+}
+
+@media (max-width: 768px) {
+    .vist-product-card--horizontal {
+        flex-direction: column;
+    }
+    
+    .vist-product-card--horizontal .vist-card-image {
+        width: 100%;
+        height: 220px;
+    }
+}

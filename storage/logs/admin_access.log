@@ -1,0 +1,3 @@
+[2026-01-20 13:04:28] SUCCESS | User: admin | IP: 127.0.0.1 | UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+[2026-01-20 15:03:53] Admin Login FAILED | User: admin@vist.net.ua | IP: 127.0.0.1 | UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+[2026-01-20 15:05:24] Admin Login SUCCESS | User: admin@vist.net.ua | IP: 127.0.0.1 | UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36

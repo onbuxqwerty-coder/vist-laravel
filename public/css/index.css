@@ -1,0 +1,838 @@
+/* ==================== VIDEO HERO ==================== */
+.background-video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#myVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  padding: 20px;
+}
+
+.background-video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.content h1 {
+  font-size: 3em;
+  margin-bottom: 0.2em;
+  color: #ffffff;
+}
+
+.content p {
+  font-size: 1.5em;
+  margin-bottom: 2em;
+}
+
+/* ==================== BUTTONS ==================== */
+.content-button {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.specialist-button {
+  width: 300px;
+  height: 50px;
+  background-color: #001BE4;
+  color: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #FFFFFF;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  line-height: 1; /* 🔑 КЛЮЧ */
+}
+
+
+
+.specialist-button:hover {
+  background-color: #ffffff;
+  color: #001BE4;
+}
+
+.specialist-button:focus-visible {
+  outline: 2px solid #001BE4;
+  outline-offset: 3px;
+}
+
+
+/* ==================== FLEX CONTAINERS ==================== */
+.flex-container {
+  display: flex;
+  height: auto;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #EAE8FF;
+  justify-content: space-between;
+}
+
+.item {
+  flex: 1;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 300px;
+  padding: 20px;
+  text-align: center;
+  background-color: #EAE8FF;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.item-img {
+  margin-bottom: 30px;
+}
+
+.flex-container2 {
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #FFFFFF;
+}
+
+.flex-container3 {
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #FFFFFF;
+}
+
+.short-line {
+  border: none;
+  height: 2px;
+  width: 200px;
+  background-color: #000000;
+  margin: 10px auto;
+}
+
+.item2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  width: 80%;
+  max-width: 700px;
+}
+
+.item3 p {
+  margin: 30px 30px 30px 30px;
+  font-size: 18px;
+  width: 80%;
+}
+
+.rs {
+  width: 400px;
+  height: 400px;
+}
+
+/* ==================== GENERAL STYLES ==================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+  color: #222;
+}
+
+/* ==================== CARDS GRID (HERO 4) ==================== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 24px;
+  object-fit: contain;
+}
+
+.card h3 {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.card p {
+  margin: 0;
+  line-height: 1.6;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* ==================== VIST SECTIONS ==================== */
+.vist-section {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40px 0;
+}
+
+.vist-section--highlight {
+  background-color: #EAE8FF;
+}
+
+.vist-section-inner {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.vist-section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.vist-section-title h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #222222;
+}
+
+.vist-section-subtitle {
+  font-size: 18px;
+  color: #555555;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.vist-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.vist-list li {
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.vist-benefits-list li {
+  margin-bottom: 8px;
+}
+
+.vist-cta-center {
+  text-align: center;
+}
+
+.vist-cta-text {
+  font-size: 18px;
+  margin: 15px 0 25px 0;
+}
+
+/* ==================== PRODUCTIVITY SECTION WITH ANIMATED CARDS ==================== */
+.vist-productivity-section {
+  width: 100%;
+  background: #0b1a2b;
+  position: relative;
+  overflow: hidden;
+}
+
+.vist-productivity-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.vist-text-column {
+  width: 66.666%;
+  padding: 40px 40px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.vist-text-column h2 {
+	font-size: 40px;
+	color:#ffffff;
+	text-align: center;
+}
+
+/* ==================== ANIMATED CARDS ==================== */
+.vist-card {
+  background: rgba(197, 214, 230, 0.85);
+  color: #0b1a2b;
+  border-radius: 0;
+  padding: 30px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+  /* Обмеження висоти */
+  min-height: 140px;
+  max-height: 150px;
+  
+  /* Паралелограм через clip-path */
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+  
+  /* Початковий стан - приховано зліва */
+  opacity: 0;
+  margin-left: -300px;
+  
+  overflow: hidden;
+}
+
+/* Контейнер для контенту всередині картки */
+.vist-card-content {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Видима картка з transition */
+.vist-card.is-visible {
+  opacity: 1;
+  margin-left: 0;
+  transition: opacity 0.8s ease-out, margin-left 0.8s ease-out;
+}
+
+/* Різні кольори для карток */
+.vist-card:nth-child(1) {
+  background: linear-gradient(120deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+}
+
+.vist-card:nth-child(2) {
+  background: linear-gradient(120deg, #ec4899 0%, #f43f5e 100%);
+  color: #ffffff;
+}
+
+.vist-card:nth-child(3) {
+  background: linear-gradient(120deg, #06b6d4 0%, #3b82f6 100%);
+  color: #ffffff;
+}
+
+.vist-card-title {
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.vist-card p {
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+}
+
+/* ==================== IMAGE COLUMN ==================== */
+.vist-image-column {
+  width: 33.333%;
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.vist-image-column img {
+  width: 100%;
+  height: calc(100vh - 60px);
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+/* ==================== ДЗЕРКАЛЬНА СЕКЦІЯ ==================== */
+.vist-productivity-section--reversed {
+  background: #00007c;
+}
+
+.vist-productivity-wrapper--reversed {
+  flex-direction: row-reverse;
+}
+
+.vist-text-column--reversed {
+  width: 66.666%;
+  padding: 40px 60px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.vist-image-column--reversed {
+  width: 33.333%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.vist-card--reversed {
+  opacity: 0;
+  transform: translateX(300px);
+}
+
+.vist-card--reversed.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 992px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  /* Основна секція */
+  .vist-productivity-wrapper {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .vist-text-column,
+  .vist-image-column {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+
+  .vist-image-column {
+    order: -1;
+  }
+
+  .vist-image-column img {
+    height: 50vh;
+    margin-bottom: 20px;
+  }
+
+  /* Покращені картки на мобільних */
+  .vist-card {
+    min-height: auto;
+    max-height: none;
+    padding: 24px 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    clip-path: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9);
+  }
+
+  .vist-card.is-visible {
+    transform: scale(1);
+    margin-left: 0;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .vist-card-content {
+    width: 100%;
+  }
+
+  .vist-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .vist-card p {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  /* Дзеркальна секція */
+  .vist-productivity-wrapper--reversed {
+    flex-direction: column;
+  }
+
+  .vist-text-column--reversed,
+  .vist-image-column--reversed {
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .vist-image-column--reversed {
+    order: -1;
+  }
+
+  .vist-image-column--reversed img {
+    height: 50vh;
+    margin-bottom: 20px;
+  }
+
+  .vist-card--reversed {
+    transform: scale(0.9) translateX(0);
+    border-radius: 12px;
+    clip-path: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-height: auto;
+    max-height: none;
+    padding: 24px 20px;
+    margin-bottom: 15px;
+  }
+
+  .vist-card--reversed.is-visible {
+    transform: scale(1) translateX(0);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Hero секція */
+  .content h1 {
+    font-size: 2em;
+  }
+
+  .content p {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flex-container,
+  .flex-container3 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-button {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .specialist-button {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .vist-section-inner {
+    width: 90%;
+  }
+
+  .vist-card,
+  .vist-card--reversed {
+    padding: 20px 16px;
+  }
+
+  .vist-text-column--reversed,
+  .vist-image-column--reversed,
+  .vist-text-column,
+  .vist-image-column {
+    padding: 20px 16px;
+  }
+
+  .content h1 {
+    font-size: 1.8em;
+  }
+
+  .content p {
+    font-size: 1em;
+  }
+}
+
+.brands-slider {
+  padding: 20px 0;      /* вертикальні відступи секції */
+}
+
+.brands-slider .swiper-slide {
+  width: 220px;
+  padding: 10px 0;      /* вертикальний “повітряний” зазор */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brands-slider img {
+  height: 160px;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 767px) {
+.brands-slider {
+  padding: 10px 0;      /* вертикальні відступи секції */
+}
+}
+
+
+/* Додайте це до вашого index.css замість/разом з наявним кодом */
+.brands-slider {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.swiper-wrapper { /* Або .slide-track, якщо залишите стару назву */
+    display: flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Потребує дублювання карток у HTML */
+}
+
+
+
+/* ==================== WHY VIST – PARTNER SECTION ==================== */
+
+.partner{
+  padding: 64px 0;
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(0,27,228,.22), transparent 60%),
+    radial-gradient(900px 500px at 80% 30%, rgba(99,102,241,.18), transparent 55%),
+    linear-gradient(180deg, #070B18 0%, #060A14 100%);
+  color: #EAF0FF;
+  position: relative;
+  overflow: hidden;
+}
+
+.partner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity:.25;
+  pointer-events:none;
+}
+
+.partner__inner{
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Header ---------- */
+
+.partner__head{
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.partner__title{
+  margin: 0 0 10px;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.partner__subtitle{
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(234,240,255,.82);
+}
+
+/* ---------- Grid ---------- */
+
+.partner__grid{
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Cards ---------- */
+
+.partner__card{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding: 20px 20px 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.25);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.partner__card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,.24);
+  background: rgba(255,255,255,.085);
+}
+
+.partner__card--accent{
+  border-color: rgba(0,27,228,.55);
+  background: linear-gradient(
+    180deg,
+    rgba(0,27,228,.20),
+    rgba(255,255,255,.06)
+  );
+}
+
+/* ---------- Card content ---------- */
+
+.partner__icon{
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(0,27,228,.22);
+  border: 1px solid rgba(0,27,228,.40);
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.partner__cardTitle{
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+.partner__text{
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(234,240,255,.88);
+}
+
+.partner__badge{
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(0,27,228,.22);
+  border: 1px solid rgba(0,27,228,.40);
+  color: #EAF0FF;
+  font-weight: 600;
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+.cards-grid-hero4 {
+	background: rgba(186, 199, 255, 0.85);
+	padding-top: 10px;
+	padding-bottom: 50px;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 980px){
+  .partner__grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px){
+  .partner{
+    padding: 44px 0;
+  }
+
+  .partner__head{
+    margin-bottom: 18px;
+  }
+
+  .partner__title{
+    font-size: 28px;
+  }
+
+  .partner__subtitle{
+    font-size: 16px;
+  }
+
+  .partner__grid{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .partner__card{
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+
+  .partner__icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .partner__cardTitle{
+    font-size: 17px;
+  }
+
+  .partner__text{
+    font-size: 15px;
+  }
+}
+
+main {
+    display: block;
+    padding-top: 0px; /* Висота вашого хедера */
+}
+
+

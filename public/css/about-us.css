@@ -1,0 +1,50 @@
+/* about-us.css */
+
+.about-us {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    margin: 140px auto 30px;  /* ← 140px під висоту fixed-хедера */
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+
+
+/* Контейнер зображення: 30% ширини */
+.about-img {
+	width: 30%;
+	height: auto;
+}
+
+/* Стилі для самого зображення: Зберігає пропорції та скруглює кути */
+.about-img img {
+    display: block; 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px; /* Скруглені кути */
+}
+
+/* Контейнер тексту: 70% ширини */
+.about {
+	width: 70%;
+	height: auto;
+	    margin: 0 auto 30px;
+}
+
+/* АДАПТИВНІСТЬ */
+@media (max-width: 768px) {
+	.about-us {
+		flex-direction: column;
+		gap: 20px;
+		/* Зменшуємо горизонтальні відступи на мобільних */
+		padding: 20px 20px 0 20px; 
+	}
+
+	.about-img,
+	.about {
+		width: 100%; 
+	}
+}
