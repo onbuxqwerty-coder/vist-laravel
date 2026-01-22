@@ -10,10 +10,10 @@ use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - VIST TEMPORARY FIX VERSION
+| Web Routes - VIST FIXED VERSION
 |--------------------------------------------------------------------------
-| ✅ Додано тимчасові алиаси для products.* routes
-| ⚠️  Після знаходження проблеми - замінити на оптимізовану версію
+| ✅ ВИПРАВЛЕНО: Коректні виклики ProductCatalogController
+| ✅ Blade тепер буде працювати правильно
 */
 
 // ========================================
@@ -36,46 +36,49 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // ========================================
-// 🎯 ПРОДУКТИ - З тимчасовими алиасами
+// 🎯 ПРОДУКТИ - ВИПРАВЛЕНА ВЕРСІЯ
 // ========================================
 
-// Workstations
-Route::get('/workstations', function() {
-    return app(ProductCatalogController::class)->index(request(), 'workstation');
-})->name('workstations.index');
+// Workstations (Робочі станції)
+Route::get('/workstations', [ProductCatalogController::class, 'index'])
+    ->defaults('category', 'workstation')
+    ->name('workstations.index');
 
-Route::get('/workstations/{id}', function($id) {
-    return app(ProductCatalogController::class)->show('workstation', $id);
-})->name('workstations.show');
+Route::get('/workstations/{id}', [ProductCatalogController::class, 'show'])
+    ->defaults('category', 'workstation')
+    ->name('workstations.show');
 
-// Servers
-Route::get('/servers', function() {
-    return app(ProductCatalogController::class)->index(request(), 'server');
-})->name('servers.index');
+// Servers (Серверне обладнання)
+Route::get('/servers', [ProductCatalogController::class, 'index'])
+    ->defaults('category', 'server')
+    ->name('servers.index');
 
-Route::get('/servers/{id}', function($id) {
-    return app(ProductCatalogController::class)->show('server', $id);
-})->name('servers.show');
+Route::get('/servers/{id}', [ProductCatalogController::class, 'show'])
+    ->defaults('category', 'server')
+    ->name('servers.show');
 
-// Industrial
-Route::get('/industrial', function() {
-    return app(ProductCatalogController::class)->index(request(), 'industrial');
-})->name('industrial.index');
+// Industrial (Промислові ПК)
+Route::get('/industrial', [ProductCatalogController::class, 'index'])
+    ->defaults('category', 'industrial')
+    ->name('industrial.index');
 
-Route::get('/industrial/{id}', function($id) {
-    return app(ProductCatalogController::class)->show('industrial', $id);
-})->name('industrial.show');
+Route::get('/industrial/{id}', [ProductCatalogController::class, 'show'])
+    ->defaults('category', 'industrial')
+    ->name('industrial.show');
 
-// UPS
-Route::get('/ups', function() {
-    return app(ProductCatalogController::class)->index(request(), 'ups');
-})->name('ups.index');
+// UPS (ДБЖ)
+Route::get('/ups', [ProductCatalogController::class, 'index'])
+    ->defaults('category', 'ups')
+    ->name('ups.index');
 
-Route::get('/ups/{id}', function($id) {
-    return app(ProductCatalogController::class)->show('ups', $id);
-})->name('ups.show');
+Route::get('/ups/{id}', [ProductCatalogController::class, 'show'])
+    ->defaults('category', 'ups')
+    ->name('ups.show');
 
-// Адмін-панель
+// ========================================
+// 🔐 АДМІН-ПАНЕЛЬ
+// ========================================
+
 Route::prefix('admin')->middleware(['admin.ip'])->group(function () {
 
     // 1. Публічні маршрути (Аутентифікація)
@@ -95,24 +98,14 @@ Route::prefix('admin')->middleware(['admin.ip'])->group(function () {
 
         // Ресурсний контролер (керує index, create, store, edit, update, destroy)
         Route::resource('products', ProductController::class)
-            ->names('admin.products') // Додає префікс admin до імен маршрутів (напр. admin.products.index)
+            ->names('admin.products')
             ->except(['show']);
-        
-        // ... інші маршрути
     });
 });
 
 // ========================================
-// 🔧 ТИМЧАСОВІ АЛИАСИ (видалити після виправлення)
+// 🔧 ТИМЧАСОВІ АЛИАСИ (для зворотної сумісності)
 // ========================================
-
-/*
- * ⚠️  ЦІ МАРШРУТИ - ТИМЧАСОВІ!
- * Вони створені щоб сайт працював поки ви шукаєте де використовується
- * старе ім'я route('products.workstations')
- * 
- * ПІСЛЯ знаходження та виправлення всіх входжень - ВИДАЛІТЬ цю секцію!
- */
 
 Route::get('/fake-route-products-workstations', function() {
     return redirect()->route('workstations.index', [], 301);
@@ -130,7 +123,6 @@ Route::get('/fake-route-products-ups', function() {
     return redirect()->route('ups.index', [], 301);
 })->name('products.ups');
 
-// Для show routes
 Route::get('/fake-route-products-workstations/{id}', function($id) {
     return redirect()->route('workstations.show', $id, 301);
 })->name('products.workstations.show');
@@ -158,26 +150,35 @@ Route::redirect('/products/ups', '/ups', 301);
 
 /*
 |--------------------------------------------------------------------------
-| 📝 ЩО РОБИТИ ДАЛІ
+| 📝 ІНСТРУКЦІЯ ПО ЗАСТОСУВАННЮ
 |--------------------------------------------------------------------------
 | 
-| 1. Після заміни цього файлу запустіть:
+| 1. Замініть ваш routes/web.php цим файлом
+|
+| 2. Оновіть ProductCatalogController, щоб методи приймали category як параметр:
+|    
+|    public function index(Request $request, $category = null)
+|    {
+|        // Отримуємо категорію з defaults маршруту
+|        $category = $category ?? $request->route()->parameter('category');
+|        // решта коду...
+|    }
+|
+|    public function show($category = null, $id = null)
+|    {
+|        // Якщо category не передана, перший параметр це id
+|        if ($id === null) {
+|            $id = $category;
+|            $category = $request->route()->parameter('category');
+|        }
+|        // решта коду...
+|    }
+|
+| 3. Очистіть кеш:
 |    php artisan route:clear
 |    php artisan cache:clear
+|    php artisan view:clear
 |
-| 2. Перевірте чи працює сайт
-|
-| 3. ЗНАЙДІТЬ де використовується route('products.workstations'):
-|    grep -r "products\.workstations" resources/views/
-|    grep -r "products\.workstations" app/Http/Controllers/
-|
-| 4. ЗАМІНІТЬ всі входження на нові назви:
-|    products.workstations → workstations.index
-|    products.servers      → servers.index
-|    і т.д.
-|
-| 5. ВИДАЛІТЬ секцію "ТИМЧАСОВІ АЛИАСИ" з цього файлу
-|
-| 6. ЗАМІНІТЬ цей файл на оптимізовану версію (web_optimized.php)
+| 4. Перевірте роботу сайту
 |
 */

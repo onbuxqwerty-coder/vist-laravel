@@ -4,210 +4,115 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-/**
- * ProductCatalogController - Оптимізована версія
- * 
- * Змінено з closure в routes на окремі методи для підтримки route:cache
- */
 class ProductCatalogController extends Controller
 {
     /**
-     * Конфігурація категорій
-     */
-    private const CATEGORIES = [
-        'workstation' => [
-            'type' => 'workstation',
-            'title' => 'Робочі станції VIST',
-            'subtitle' => 'Професійні системи для CAD, BIM, 3D та інженерії',
-            'description' => 'Високопродуктивні робочі станції для інженерних застосувань',
-            'empty_icon' => '💻',
-            'view' => 'products.catalog',
-        ],
-        'server' => [
-            'type' => 'server',
-            'title' => 'Сервери VIST',
-            'subtitle' => 'Надійні серверні рішення для бізнесу',
-            'description' => 'Корпоративні сервери для віртуалізації та баз даних',
-            'empty_icon' => '🖥️',
-            'view' => 'products.catalog',
-        ],
-        'industrial' => [
-            'type' => 'ipc',
-            'title' => 'Промислові комп\'ютери',
-            'subtitle' => 'Надійні системи для промисловості',
-            'description' => 'Fanless IPC для SCADA, MES та автоматизації',
-            'empty_icon' => '🏭',
-            'view' => 'products.catalog',
-        ],
-        'ups' => [
-            'type' => 'ups',
-            'title' => 'ДБЖ та системи живлення',
-            'subtitle' => 'Безперебійне живлення для критичних систем',
-            'description' => 'ДБЖ та системи резервного живлення',
-            'empty_icon' => '⚡',
-            'view' => 'products.catalog',
-        ],
-    ];
-
-    // ========================================
-    // WORKSTATIONS
-    // ========================================
-
-    /**
-     * Каталог робочих станцій
-     */
-    public function indexWorkstations(Request $request): View
-    {
-        return $this->index($request, 'workstation');
-    }
-
-    /**
-     * Деталі робочої станції
-     */
-    public function showWorkstation(int $id): View
-    {
-        return $this->show('workstation', $id);
-    }
-
-    // ========================================
-    // SERVERS
-    // ========================================
-
-    /**
-     * Каталог серверів
-     */
-    public function indexServers(Request $request): View
-    {
-        return $this->index($request, 'server');
-    }
-
-    /**
-     * Деталі сервера
-     */
-    public function showServer(int $id): View
-    {
-        return $this->show('server', $id);
-    }
-
-    // ========================================
-    // INDUSTRIAL
-    // ========================================
-
-    /**
-     * Каталог промислових ПК
-     */
-    public function indexIndustrial(Request $request): View
-    {
-        return $this->index($request, 'industrial');
-    }
-
-    /**
-     * Деталі промислового ПК
-     */
-    public function showIndustrial(int $id): View
-    {
-        return $this->show('industrial', $id);
-    }
-
-    // ========================================
-    // UPS
-    // ========================================
-
-    /**
-     * Каталог ДБЖ
-     */
-    public function indexUps(Request $request): View
-    {
-        return $this->index($request, 'ups');
-    }
-
-    /**
-     * Деталі ДБЖ
-     */
-    public function showUps(int $id): View
-    {
-        return $this->show('ups', $id);
-    }
-
-    // ========================================
-    // PRIVATE HELPER METHODS
-    // ========================================
-
-    /**
-     * Універсальний метод для відображення каталогу
+     * Показати каталог продуктів
+     * Використовує один view для всіх категорій: resources/views/products/index.blade.php
      * 
      * @param Request $request
-     * @param string $category (workstation|server|industrial|ups)
-     * @return View
+     * @param string|null $category - Отримується з route()->defaults()
      */
-    public function index(Request $request, string $category): View
+    public function index(Request $request, string $category = null)
     {
-        $config = self::CATEGORIES[$category] ?? abort(404);
+        // Отримуємо категорію з defaults маршруту, якщо не передана явно
+        if ($category === null) {
+            $category = $request->route()->parameter('category');
+        }
         
-        // Запит продуктів з оптимізацією (eager loading)
-        $products = Product::with(['images', 'specs'])
-            ->where('category', $config['type'])
-            ->where('is_active', 1)
-            ->orderBy('title')
-            ->paginate(12);
-
-        // НЕ перетворюємо в масив - передаємо об'єкти як є
-        // Blade очікує об'єкти Product з відношеннями images і specs
-
-        return view($config['view'], [
-            'products' => $products,
+        // Валідація категорії
+        $validCategories = ['workstation', 'server', 'industrial', 'ups'];
+        if (!in_array($category, $validCategories)) {
+            abort(404, "Категорія '{$category}' не знайдена");
+        }
+        
+        // Отримуємо продукти з усіма зв'язками + ціни
+        $products = Product::with(['images', 'specs', 'prices'])
+            ->active()
+            ->where('category', $category)
+            ->get();
+        
+        // Для кожного продукту отримуємо актуальну ціну
+        $products->each(function ($product) {
+            $product->active_price = $product->getActivePrice();
+            $product->formatted_price = $product->getFormattedPrice();
+            $product->has_promo = $product->hasActivePromo();
+        });
+        
+        // Назви категорій для відображення
+        $categoryNames = [
+            'workstation' => 'Робочі станції',
+            'server' => 'Серверне обладнання',
+            'industrial' => 'Промислові ПК',
+            'ups' => 'ДБЖ',
+        ];
+        
+        // ✅ Використовуємо ОДИН view для всіх категорій
+        return view('products.index', [
             'category' => $category,
-            'config' => $config,
-            'pageTitle' => $config['title'],
+            'categoryName' => $categoryNames[$category] ?? $category,
+            'products' => $products,
         ]);
     }
-
+    
     /**
-     * Універсальний метод для відображення деталей продукту
+     * Показати детальну сторінку продукту
+     * Використовує один view для всіх категорій: resources/views/products/show.blade.php
      * 
-     * @param string $category
-     * @param int $id
-     * @return View
+     * @param string|null $category - Отримується з route()->defaults()
+     * @param string|int $id - Може бути ID або slug
      */
-    public function show(string $category, int $id): View
+    public function show(string $category = null, $id = null)
     {
-        $config = self::CATEGORIES[$category] ?? abort(404);
-
-        $product = Product::with([
-            'images' => function($query) {
-                $query->orderBy('sort_order');
-            },
-            'specs' => function($query) {
-                $query->orderBy('sort_order');
-            },
-        ])
-        ->where('category', $config['type'])
-        ->findOrFail($id);
-
+        // Якщо category не передана, отримуємо з маршруту
+        if ($category === null) {
+            $category = request()->route()->parameter('category');
+        }
+        
+        // Якщо id не передано, значить category це насправді id
+        if ($id === null && $category !== null && !in_array($category, ['workstation', 'server', 'industrial', 'ups'])) {
+            $id = $category;
+            $category = request()->route()->parameter('category');
+        }
+        
+        // Валідація категорії
+        $validCategories = ['workstation', 'server', 'industrial', 'ups'];
+        if (!in_array($category, $validCategories)) {
+            abort(404, "Категорія '{$category}' не знайдена");
+        }
+        
+        // Шукаємо продукт за ID або slug
+        $query = Product::with(['images', 'specs', 'prices'])
+            ->where('category', $category)
+            ->active();
+        
+        // Визначаємо чи це ID чи slug
+        if (is_numeric($id)) {
+            $product = $query->where('id', $id)->firstOrFail();
+        } else {
+            $product = $query->where('slug', $id)->firstOrFail();
+        }
+        
+        // Отримуємо детальну інформацію про ціни
+        $activePriceData = $product->getActivePrice();
+        $allPrices = $product->prices()->active()->get();
+        
+        // Назви категорій для відображення
+        $categoryNames = [
+            'workstation' => 'Робочі станції',
+            'server' => 'Серверне обладнання',
+            'industrial' => 'Промислові ПК',
+            'ups' => 'ДБЖ',
+        ];
+        
+        // ✅ Використовуємо ОДИН view для всіх категорій
         return view('products.show', [
             'product' => $product,
+            'activePriceData' => $activePriceData,
+            'allPrices' => $allPrices,
             'category' => $category,
-            'config' => $config,
-            'pageTitle' => $product->title,
+            'categoryName' => $categoryNames[$category] ?? $category,
         ]);
-    }
-
-    /**
-     * Отримати route name для типу продукту
-     * 
-     * @param string $productType
-     * @return string
-     */
-    private function getCategoryRoute(string $productType): string
-    {
-        return match($productType) {
-            'workstation' => 'workstations',
-            'server' => 'servers',
-            'ipc' => 'industrial',
-            'ups' => 'ups',
-            default => 'products',
-        };
     }
 }
