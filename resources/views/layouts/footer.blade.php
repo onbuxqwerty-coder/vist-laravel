@@ -11,10 +11,46 @@
             <ul class="footer_service">
                 <li><strong>ТОВ "ВІСТ"</strong></li>
                 <li>Тел: <a href="tel:+380563700707">+380 56 370-07-07</a></li>
-                <li>Моб: <a href="tel:+380773700707">+380 77 370-07-07</a></li>
+                <li>Моб: <a href="tel:+380773700707">+380 63 437-07-07</a></li>
                 <li>E-mail: <a href="mailto:info@vist.dp.ua">info@vist.dp.ua</a></li>
-                <li>Viber: <a href="viber://chat?number=+380773700707">+380 77 370-07-07</a></li>
-                <li>WhatsApp: <a href="https://wa.me/380773700707">+380 77 370-07-07</a></li>
+				<li>
+				  <a href="whatsapp://send?phone=380634370707"
+					 title="WhatsApp"
+					 target="_blank"
+					 rel="noreferrer"
+					 aria-label="WhatsApp">
+					 
+					<img src="img/logo/media/whatsapp.png"
+						 alt="WhatsApp"
+						 loading="lazy"
+						 width="45"
+						 height="45">
+				  </a>&nbsp;&nbsp;
+				  <a href="https://t.me/+380634370707"
+					 title="Telegram"
+					 target="_blank"
+					 rel="noreferrer"
+					 aria-label="Telegram">
+					 
+					<img src="img/logo/media/telegram.png"
+						 alt="Telegram"
+						 loading="lazy"
+						 width="45"
+						 height="45">
+				  </a>&nbsp;&nbsp;
+				  <a href="viber://chat?number=%2B380634370707"
+					 title="Viber"
+					 target="_blank"
+					 rel="noreferrer"
+					 aria-label="Viber">
+					 
+					<img src="img/logo/media/viber.png"
+						 alt="Viber"
+						 loading="lazy"
+						 width="45"
+						 height="45">
+				  </a>
+				</li>
             </ul>
         </nav>
         
@@ -26,21 +62,22 @@
                 <li><a href="{{ route('ups.index') }}">ДБЖ</a></li>
                 <li><a href="{{ route('support.index') }}">Підтримка</a></li>
                 <li><a href="{{ route('about') }}">Про компанію</a></li>
+				<li><a href="{{ route('contact') }}">Контакти</a></li>
             </ul>
         </nav>
 
         <div class="social_networks">
             <a href="https://facebook.com/vist" target="_blank" rel="noopener" class="facebook_logo">
-                <img width="40" height="40" src="{{ asset('img/media/facebook_logo_120x120.png') }}" alt="Facebook">
+                <img width="40" height="40" src="{{ asset('img/logo/media/facebook_logo_120x120.png') }}" alt="Facebook">
             </a>
             <a href="https://instagram.com/vist" target="_blank" rel="noopener" class="instagram_logo">
-                <img width="40" height="40" src="{{ asset('img/media/instagram_logo_120x120.png') }}" alt="Instagram">
+                <img width="40" height="40" src="{{ asset('img/logo/media/instagram_logo_120x120.png') }}" alt="Instagram">
             </a>
             <a href="https://linkedin.com/company/vist" target="_blank" rel="noopener" class="linkedin_logo">
-                <img width="40" height="40" src="{{ asset('img/media/linkedIn_logo_120x120.png') }}" alt="Linkedin">
+                <img width="40" height="40" src="{{ asset('img/logo/media/linkedIn_logo_120x120.png') }}" alt="Linkedin">
             </a>
             <a href="https://reddit.com/r/vist" target="_blank" rel="noopener" class="reddit_logo">
-                <img width="40" height="40" src="{{ asset('img/media/reddit_logo_120x120.png') }}" alt="Reddit">
+                <img width="40" height="40" src="{{ asset('img/logo/media/reddit_logo_120x120.png') }}" alt="Reddit">
             </a>
         </div>
     </div>

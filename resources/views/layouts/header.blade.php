@@ -45,6 +45,7 @@
                     <a href="{{ route('ups.index') }}">ДБЖ</a>
                     <a href="{{ route('support.index') }}">Підтримка</a>
                     <a href="{{ route('about') }}">Про компанію</a>
+					<a href="{{ route('contact') }}">Контакти</a>
                 </nav>
 
                 <!-- бургер для мобільного -->
@@ -63,6 +64,7 @@
                 <a href="{{ route('ups.index') }}">ДБЖ</a>
                 <a href="{{ route('support.index') }}">Підтримка</a>
                 <a href="{{ route('about') }}">Про компанію</a>
+				<a href="{{ route('contact') }}">Контакти</a>
             </nav>
         </div>
 
