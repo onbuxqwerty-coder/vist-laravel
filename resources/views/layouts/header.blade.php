@@ -1,18 +1,4 @@
 {{-- resources/views/layouts/header.blade.php --}}
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $pageTitle ?? 'VIST - Професійні робочі станції та сервери' }}</title>
-    <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-</head>
-
-<body>
 <header class="site-header">
     <div class="container header-grid">
 
@@ -45,7 +31,7 @@
                     <a href="{{ route('ups.index') }}">ДБЖ</a>
                     <a href="{{ route('support.index') }}">Підтримка</a>
                     <a href="{{ route('about') }}">Про компанію</a>
-					<a href="{{ route('contact') }}">Контакти</a>
+                    <a href="{{ route('contact') }}">Контакти</a>
                 </nav>
 
                 <!-- бургер для мобільного -->
@@ -64,7 +50,7 @@
                 <a href="{{ route('ups.index') }}">ДБЖ</a>
                 <a href="{{ route('support.index') }}">Підтримка</a>
                 <a href="{{ route('about') }}">Про компанію</a>
-				<a href="{{ route('contact') }}">Контакти</a>
+                <a href="{{ route('contact') }}">Контакти</a>
             </nav>
         </div>
 

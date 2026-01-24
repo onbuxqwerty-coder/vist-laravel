@@ -182,3 +182,20 @@ Route::redirect('/products/ups', '/ups', 301);
 | 4. Перевірте роботу сайту
 |
 */
+
+// Тестовий route для перевірки Blade
+Route::get('/test-blade', function () {
+    return view('test');
+});
+
+Route::get('/test-home', function () {
+    return view('home.index', ['featuredProducts' => collect()]);
+});
+
+Route::get('/test-extends', function () {
+    return view('test-extends');
+});
+
+Route::get('/test-simple', function () {
+    return view('test-simple');
+});
