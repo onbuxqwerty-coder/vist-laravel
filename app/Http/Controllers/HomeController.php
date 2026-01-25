@@ -12,9 +12,9 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        // Отримуємо featured продукти для головної (можна додати scope)
-        $featuredProducts = Product::with(['primaryImage', 'specs'])
-            ->active()
+        // Отримуємо 6 випадкових продуктів для головної
+        $featuredProducts = Product::active()
+            ->inRandomOrder()
             ->limit(6)
             ->get();
 
@@ -22,12 +22,12 @@ class HomeController extends Controller
             'featuredProducts' => $featuredProducts,
         ]);
     }
-	
-		/**
-	 * Сторінка про компанію
-	 */
-	public function about(): View
-	{
-		return view('about.index');
-	}
+
+    /**
+     * Сторінка про компанію
+     */
+    public function about(): View
+    {
+        return view('about.index');
+    }
 }

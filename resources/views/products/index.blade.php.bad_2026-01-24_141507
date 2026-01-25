@@ -1,0 +1,57 @@
+@extends('layouts.app')
+
+@section('title')
+    {{ ucfirst($section) }}
+@endsection
+
+@section('content')
+<main style="padding: 24px 0;">
+    <div class="container">
+        <h1 style="margin: 0 0 16px 0;">
+            {{ ucfirst($section) }}
+        </h1>
+
+        @if($products->isEmpty())
+            <p>У цій категорії поки немає активних продуктів.</p>
+        @else
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;">
+                @foreach($products as $p)
+                    <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
+                        @if(!empty($p->image))
+                            <div style="margin-bottom:10px;">
+                                <img src="{{ asset($p->image) }}" alt="{{ $p->name }}" style="width:100%;height:170px;object-fit:cover;border-radius:10px;">
+                            </div>
+                        @endif
+
+                        <div style="font-weight:700;margin-bottom:6px;">
+                            {{ $p->name }}
+                        </div>
+
+                        @if(!empty($p->short_desc))
+                            <div style="color:#4b5563;margin-bottom:10px;">
+                                {{ $p->short_desc }}
+                            </div>
+                        @endif
+
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
+                            <div>
+                                @if($p->price !== null)
+                                    <span style="font-weight:700;">
+                                        {{ number_format((float)$p->price, 0, ',', ' ') }} {{ $p->currency }}
+                                    </span>
+                                @else
+                                    <span style="color:#6b7280;">Ціна: за запитом</span>
+                                @endif
+                            </div>
+
+                            <div style="font-size:12px;color:#6b7280;">
+                                {{ $p->status }}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
+</main>
+@endsection

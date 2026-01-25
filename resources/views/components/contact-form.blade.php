@@ -1,5 +1,5 @@
 <div class="support-form-container">
-    <form action="{{ route('contact.submit') }}" method="POST" class="vist-contact-form" novalidate>
+    <form action="{{ '#' }}" method="POST" class="vist-contact-form" novalidate>
         @csrf
         
         <div class="form-group">
