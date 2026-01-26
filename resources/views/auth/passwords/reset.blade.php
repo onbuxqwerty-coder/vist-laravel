@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вхід в адмін-панель | VIST</title>
+    <title>Скидання паролю | VIST</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -21,7 +21,7 @@
             padding: 20px;
         }
 
-        .login-container {
+        .container {
             background: white;
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -30,21 +30,29 @@
             padding: 40px;
         }
 
-        .logo {
+        .header {
             text-align: center;
             margin-bottom: 30px;
         }
 
-        .logo h1 {
-            font-size: 32px;
+        .header h1 {
+            font-size: 28px;
             color: #2c3e50;
-            font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        .logo p {
+        .header p {
             color: #7f8c8d;
             font-size: 14px;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
         }
 
         .form-group {
@@ -102,63 +110,7 @@
             color: #667eea;
         }
 
-        .error-message {
-            background: #fee;
-            color: #c33;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            border-left: 4px solid #c33;
-        }
-
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #28a745;
-        }
-
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-        }
-
-        .remember-me input {
-            width: auto;
-            margin-right: 8px;
-        }
-
-        .remember-me label {
-            font-size: 14px;
-            color: #555;
-            cursor: pointer;
-            font-weight: normal;
-        }
-
-        .forgot-password {
-            font-size: 14px;
-        }
-
-        .forgot-password a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-login {
+        .btn-submit {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -171,7 +123,7 @@
             transition: all 0.3s ease;
         }
 
-        .btn-login:hover {
+        .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
@@ -186,24 +138,14 @@
             text-decoration: none;
             font-size: 14px;
         }
-
-        .back-link a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <h1>🔐 VIST Admin</h1>
-            <p>Панель керування</p>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Новий пароль</h1>
+            <p>Введіть новий пароль для вашого акаунту</p>
         </div>
-
-        @if (session('status'))
-            <div class="success-message">
-                {{ session('status') }}
-            </div>
-        @endif
 
         @if ($errors->any())
             <div class="error-message">
@@ -213,61 +155,67 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('password.update') }}">
             @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email адреса</label>
                 <input 
                     type="email" 
                     id="email" 
                     name="email" 
-                    value="{{ old('email') }}" 
+                    value="{{ $email ?? old('email') }}" 
                     required 
                     autofocus
-                    placeholder="admin@vist.net.ua"
                 >
             </div>
 
             <div class="form-group">
-                <label for="password">Пароль</label>
+                <label for="password">Новий пароль</label>
                 <div class="password-wrapper">
                     <input 
                         type="password" 
                         id="password" 
                         name="password" 
                         required
-                        placeholder="••••••••"
+                        placeholder="Мінімум 8 символів"
                     >
-                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                    <button type="button" class="toggle-password" onclick="togglePassword('password')">
                         👁️
                     </button>
                 </div>
             </div>
 
-            <div class="remember-forgot">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Запам'ятати мене</label>
-                </div>
-                <div class="forgot-password">
-                    <a href="{{ route('password.request') }}">Забули пароль?</a>
+            <div class="form-group">
+                <label for="password_confirmation">Підтвердіть пароль</label>
+                <div class="password-wrapper">
+                    <input 
+                        type="password" 
+                        id="password_confirmation" 
+                        name="password_confirmation" 
+                        required
+                        placeholder="Повторіть пароль"
+                    >
+                    <button type="button" class="toggle-password" onclick="togglePassword('password_confirmation')">
+                        👁️
+                    </button>
                 </div>
             </div>
 
-            <button type="submit" class="btn-login">
-                Увійти
+            <button type="submit" class="btn-submit">
+                Скинути пароль
             </button>
         </form>
 
         <div class="back-link">
-            <a href="{{ route('home') }}">← Повернутися на сайт</a>
+            <a href="{{ route('login') }}">← Повернутися до входу</a>
         </div>
     </div>
 
     <script>
-        function togglePassword() {
-            const field = document.getElementById('password');
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
             const button = field.nextElementSibling;
             
             if (field.type === 'password') {
