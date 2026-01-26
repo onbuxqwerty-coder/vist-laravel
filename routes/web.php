@@ -32,3 +32,17 @@ Route::get('/industrial', [ProductCatalogController::class, 'index'])
 Route::get('/ups', [ProductCatalogController::class, 'index'])
     ->defaults('type', 'ups')
     ->name('ups.index');
+
+// Auth Routes
+use App\Http\Controllers\Auth\LoginController;
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Admin Routes (захищені)
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
