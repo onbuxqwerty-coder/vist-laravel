@@ -388,14 +388,22 @@ body {
     <div class="products-grid">
         @foreach($products as $product)
             <div class="product-card" onclick='openPanel({!! htmlspecialchars(json_encode($product), ENT_QUOTES, "UTF-8") !!})'>
-                <div class="product-card-image">
-                    @if($product->image)
-                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-                    @else
-                        <div style="font-size: 64px; opacity: 0.3;">💻</div>
-                    @endif
-                    <span class="product-badge">Доступно</span>
-                </div>
+			<div class="product-card-image">
+				@php
+					$cardImage = optional(
+						$product->images->sortByDesc('is_primary')->first()
+					)->image;
+				@endphp
+
+				@if($cardImage)
+					<img src="{{ asset($cardImage) }}" alt="{{ $product->name }}">
+				@else
+					<div style="font-size: 64px; opacity: 0.3;">💻</div>
+				@endif
+
+				<span class="product-badge">Доступно</span>
+			</div>
+
                 
                 <div class="product-card-content">
                     <h3 class="product-card-title">{{ $product->name }}</h3>
@@ -408,7 +416,7 @@ body {
                         <div class="price-value">
                             {{ number_format($product->price, 0, ',', ' ') }} {{ $product->currency }}
                         </div>
-                        <button class="btn-details" onclick="event.stopPropagation();">
+                        <button class="btn-details" >
                             Детальніше →
                         </button>
                     </div>
