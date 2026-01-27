@@ -14,6 +14,7 @@ class WorkstationController extends Controller
     {
         // Базовий запит для робочих станцій
         $query = Product::with([
+            'primaryImage',
             'images' => fn($q) => $q->orderBy('sort_order'),
             'specs' => fn($q) => $q->orderBy('sort_order')
         ])
@@ -51,7 +52,6 @@ class WorkstationController extends Controller
                 ->take(4);
             
             // Головне зображення
-            $product->main_image = $product->images->first()?->image ?? 'img/placeholder-product.jpg';
             
             // Всі характеристики для детальної панелі
             $product->all_specs = $product->specs;
@@ -69,6 +69,7 @@ class WorkstationController extends Controller
     public function show(string $id)
     {
         $product = Product::with([
+            'primaryImage',
             'images' => fn($q) => $q->orderBy('sort_order'),
             'specs' => fn($q) => $q->orderBy('sort_order'),
             'configurations.specs' => fn($q) => $q->orderBy('sort_order'),

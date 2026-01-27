@@ -396,7 +396,7 @@ body {
 				@endphp
 
 				@if($cardImage)
-					<img src="{{ asset($cardImage) }}" alt="{{ $product->name }}">
+					<img src="{{ $product->main_image_url }}" alt="{{ $product->name }}">
 				@else
 					<div style="font-size: 64px; opacity: 0.3;">💻</div>
 				@endif

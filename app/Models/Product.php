@@ -54,9 +54,20 @@ class Product extends Model
         return number_format($this->price, 0, ',', ' ') . ' ' . $this->currency;
     }
 
-    // URL зображення
-    public function getImageUrlAttribute(): string
+        // URL головного зображення (product_images)
+    public function getMainImageUrlAttribute(): string
     {
-        return $this->image ? asset($this->image) : asset('img/placeholder.jpg');
+        $img = $this->relationLoaded('primaryImage')
+            ? $this->primaryImage
+            : $this->primaryImage()->first();
+
+        if (!$img) {
+            $img = $this->relationLoaded('images')
+                ? $this->images->sortByDesc('is_primary')->first()
+                : $this->images()->orderByDesc('is_primary')->first();
+        }
+
+        return $img ? asset($img->image) : asset('img/placeholder.jpg');
     }
+
 }
