@@ -20,3 +20,15 @@ yarn-error.log
 /storage/framework/sessions/*
 /storage/framework/views/*
 /storage/logs/*
+
+# Product images (uploaded content)
+public/img/products/*
+
+# Backup files
+*.bak_*
+
+# Vendor view overrides / generated
+resources/views/vendor/
+
+# Logs
+storage/logs/*.log
