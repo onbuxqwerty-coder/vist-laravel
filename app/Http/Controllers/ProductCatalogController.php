@@ -19,7 +19,11 @@ class ProductCatalogController extends Controller
         }
 
         // Завантажуємо продукти з галереєю та характеристиками
-        $products = Product::with(['images', 'specs'])
+        $products = Product::with([
+            'primaryImage',
+            'images' => fn($q) => $q->orderBy('sort_order'),
+            'specs'  => fn($q) => $q->orderBy('sort_order'),
+        ])
             ->active()
             ->where('type', $type)
             ->get();
