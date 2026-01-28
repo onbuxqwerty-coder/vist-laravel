@@ -16,7 +16,6 @@ class Product extends Model
         'currency',
         'status',
         'is_active',
-        'image',
     ];
 
     protected $casts = [

@@ -502,8 +502,6 @@ function openPanel(product) {
             galleryHTML += '</div>';
         }
         gallery.innerHTML = galleryHTML;
-    } else if (product.image) {
-        gallery.innerHTML = '<div class="main-image"><img src="{{ asset('') }}' + product.image + '" alt="' + product.name + '"></div>';
     } else {
         gallery.innerHTML = '<div class="main-image"><div style="font-size: 64px; opacity: 0.3;">💻</div></div>';
     }
