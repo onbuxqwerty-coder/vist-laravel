@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ContactController;
 
 // Головна сторінка
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -16,6 +17,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 // Контакти
 Route::view('/contact', 'contact.index')->name('contact');
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Підтримка
 Route::view('/support', 'support.index')->name('support.index');

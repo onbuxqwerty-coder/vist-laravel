@@ -35,7 +35,7 @@ class ContactController extends Controller
             return redirect()->route('home');
         }
 
-        // Валідація (subject опціонально)
+        // Валідація (subject і product_name опціонально)
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -46,6 +46,11 @@ class ContactController extends Controller
         // Додаємо subject тільки якщо він є
         if ($request->has('subject')) {
             $rules['subject'] = 'required|in:consultation,order,warranty,repair,configuration,other';
+        }
+        
+        // Додаємо product_name якщо є (для замовлень з каталогу)
+        if ($request->has('product_name')) {
+            $rules['product_name'] = 'nullable|string|max:255';
         }
 
         $validated = $request->validate($rules, [
@@ -60,10 +65,16 @@ class ContactController extends Controller
 
         // Відправка email
         try {
-            $emailTo = $request->has('subject') ? 'info@vist.dp.ua' : 'sales@vist.net.ua';
-            $subjectLabel = $request->has('subject') 
-                ? 'Підтримка: ' . $this->getSubjectLabel($validated['subject'] ?? 'other')
-                : 'Звернення з форми контактів';
+            $emailTo = $request->has('subject') ? 'info@vist.net.ua' : 'sales@vist.net.ua';
+            
+            // Формуємо subject для email
+            if ($request->has('product_name')) {
+                $subjectLabel = 'Замовлення: ' . $validated['product_name'];
+            } elseif ($request->has('subject')) {
+                $subjectLabel = 'Підтримка: ' . $this->getSubjectLabel($validated['subject'] ?? 'other');
+            } else {
+                $subjectLabel = 'Звернення з форми контактів';
+            }
 
             Mail::send('emails.contact', $validated, function ($message) use ($validated, $emailTo, $subjectLabel) {
                 $message->to($emailTo)
@@ -71,9 +82,16 @@ class ContactController extends Controller
                         ->replyTo($validated['email'], $validated['name']);
             });
 
-            // Повернення на головну з повідомленням про успіх
-            return redirect()->route('home')
-                           ->with('success', 'Дякуємо! Ваше звернення відправлено. Ми зв\'яжемося з вами найближчим часом.');
+   
+// Якщо це замовлення з модалки - повертаємо назад
+if ($request->has('product_name')) {
+    return back()->with('success', 'Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
+}
+
+// Інакше на головну
+return redirect()->route('home')
+           ->with('success', 'Дякуємо! Ваше звернення відправлено. Ми зв\'яжемося з вами найближчим часом.');
+
         } catch (\Exception $e) {
             // При помилці повертаємось назад
             return back()

@@ -12,6 +12,8 @@
         .field:last-child { border-bottom: none; }
         .label { font-weight: bold; color: #0066cc; font-size: 12px; text-transform: uppercase; margin-bottom: 5px; }
         .value { margin-top: 5px; font-size: 16px; }
+        .product-highlight { background: #e3f2fd; padding: 15px; border-radius: 6px; border-left: 4px solid #0066cc; margin-bottom: 20px; }
+        .product-highlight .value { font-size: 18px; font-weight: bold; color: #0066cc; }
         .footer { background: #f9f9f9; padding: 20px; text-align: center; color: #999; font-size: 12px; }
     </style>
 </head>
@@ -22,6 +24,13 @@
         </div>
         
         <div class="content">
+            @if(isset($product_name))
+            <div class="product-highlight">
+                <div class="label">🛒 Продукт для замовлення</div>
+                <div class="value">{{ $product_name }}</div>
+            </div>
+            @endif
+            
             <div class="field">
                 <div class="label">Ім'я клієнта</div>
                 <div class="value">{{ $name }}</div>

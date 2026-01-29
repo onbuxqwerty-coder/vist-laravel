@@ -371,6 +371,159 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+/* Модальне вікно замовлення */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            padding: 24px 30px;
+            border-bottom: 2px solid #ecf0f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        
+        .btn-close-modal {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #f0f0f0;
+            color: #666;
+            font-size: 28px;
+            line-height: 1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-close-modal:hover {
+            background: #e74c3c;
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .product-info-block {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .product-info-block strong {
+            color: #2c3e50;
+        }
+        
+        .product-info-block span {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .order-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .order-form label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .order-form .required {
+            color: #e74c3c;
+        }
+        
+        .order-form input,
+        .order-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .order-form input:focus,
+        .order-form textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .order-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn-submit-order {
+            width: 100%;
+            padding: 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit-order:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
 </style>
 
 <main class="workstation-page">
@@ -467,10 +620,61 @@ body {
     </div>
     
     <div class="panel-cta">
-        <button class="btn-cta btn-order">🛒 Замовити</button>
-        <button class="btn-cta btn-request">📧 Запит КП</button>
+        <button class="btn-cta btn-order" onclick="orderProduct()">🛒 Замовити</button>
     </div>
 </div>
+<!-- Модальне вікно замовлення -->
+    <div class="modal-overlay" id="orderModal" onclick="closeOrderModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>🛒 Замовлення продукту</h2>
+                <button class="btn-close-modal" onclick="closeOrderModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+@if(session('success'))
+<div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #28a745;">
+    <strong>✅ Успішно!</strong><br>
+    {{ session('success') }}
+</div>
+@endif
+                <div class="product-info-block">
+                    <strong>Продукт:</strong> <span id="modalProductName"></span>
+                </div>
+                
+                <form action="{{ route('contact.submit') }}" method="POST" class="order-form">
+                    @csrf
+                    
+                    <input type="hidden" name="product_name" id="productNameInput">
+                    <input type="hidden" name="subject" value="order">
+                    
+                    <div class="form-group">
+                        <label for="order_name">Ім'я <span class="required">*</span></label>
+                        <input type="text" id="order_name" name="name" required placeholder="Ваше ім'я">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="order_email">Email <span class="required">*</span></label>
+                        <input type="email" id="order_email" name="email" required placeholder="name@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="order_phone">Телефон <span class="required">*</span></label>
+                        <input type="tel" id="order_phone" name="phone" required placeholder="+38 (0XX) XXX-XX-XX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="order_message">Коментар</label>
+                        <textarea id="order_message" name="message" rows="4" placeholder="Додаткові побажання або питання..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit-order">
+                        📨 Відправити замовлення
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 <script>
 let currentProduct = null;
@@ -601,6 +805,55 @@ function formatPrice(price) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closePanel();
 });
+function orderProduct() {
+            if (currentProduct) {
+                // Заповнюємо назву продукту
+                document.getElementById('modalProductName').textContent = currentProduct.name;
+                document.getElementById('productNameInput').value = currentProduct.name;
+                
+                // Відкриваємо модальне вікно
+                document.getElementById('orderModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeOrderModal(event) {
+            // Закриваємо тільки якщо клік по overlay або кнопці закриття
+            if (event && event.target.classList.contains('modal-content')) {
+                return;
+            }
+            
+            document.getElementById('orderModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Закриття модалки на Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('orderModal');
+                if (modal && modal.classList.contains('active')) {
+                    closeOrderModal();
+                } else {
+                    closePanel();
+                }
+            }
+        });
+// Автоматично відкриваємо модалку при успішній відправці
+        @if(session('success') && session()->has('success'))
+        window.addEventListener('DOMContentLoaded', function() {
+            // Якщо є збережений продукт в localStorage - відкриваємо модалку
+            const lastProduct = localStorage.getItem('lastOrderedProduct');
+            if (lastProduct) {
+                currentProduct = JSON.parse(lastProduct);
+                orderProduct();
+                // Очищаємо після показу
+                setTimeout(() => {
+                    localStorage.removeItem('lastOrderedProduct');
+                }, 1000);
+            }
+        });
+        @endif
+
 </script>
 
 </main>
