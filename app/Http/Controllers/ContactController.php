@@ -95,10 +95,6 @@ class ContactController extends Controller
                 ->with('success', 'Дякуємо! Ваше звернення відправлено. Ми зв\'яжемося з вами найближчим часом.');
 
         } catch (\Exception $e) {
-            \Log::error('ContactController submit error: ' . $e->getMessage(), [
-                'trace' => $e->getTraceAsString(),
-                'request' => $request->all(),
-            ]);
             return back()
                 ->with('error', 'Виникла помилка при відправці. Будь ласка, спробуйте пізніше або зателефонуйте нам.')
                 ->withInput();
