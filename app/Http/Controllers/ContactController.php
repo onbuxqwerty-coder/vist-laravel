@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appeal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -31,7 +31,7 @@ class ContactController extends Controller
     public function submit(Request $request): RedirectResponse
     {
         // Перевірка honeypot (захист від спаму)
-        if ($request->filled('company')) {
+        if ($request->filled('website_url')) {
             return redirect()->route('home');
         }
 
@@ -63,40 +63,45 @@ class ContactController extends Controller
             'message.min' => 'Повідомлення має бути не менше 10 символів',
         ]);
 
-        // Відправка email
+        // Формуємо subject
+        if ($request->has('product_name')) {
+            $subjectLabel = 'Замовлення: ' . ($validated['product_name'] ?? '');
+        } elseif ($request->has('subject')) {
+            $subjectLabel = $this->getSubjectLabel($validated['subject'] ?? 'other');
+        } else {
+            $subjectLabel = 'Звернення з форми контактів';
+        }
+
+        // Збереження в БД
         try {
-            $emailTo = $request->has('subject') ? 'info@vist.net.ua' : 'sales@vist.net.ua';
-            
-            // Формуємо subject для email
+            Appeal::create([
+                'date' => now()->toDateString(),
+                'time' => now()->toTimeString(),
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+                'subject' => $subjectLabel,
+                'message' => $validated['message'],
+                'product_name' => $validated['product_name'] ?? null,
+            ]);
+
+            // Якщо це замовлення з модалки - повертаємо назад
             if ($request->has('product_name')) {
-                $subjectLabel = 'Замовлення: ' . $validated['product_name'];
-            } elseif ($request->has('subject')) {
-                $subjectLabel = 'Підтримка: ' . $this->getSubjectLabel($validated['subject'] ?? 'other');
-            } else {
-                $subjectLabel = 'Звернення з форми контактів';
+                return back()->with('success', 'Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
             }
 
-            Mail::send('emails.contact', $validated, function ($message) use ($validated, $emailTo, $subjectLabel) {
-                $message->to($emailTo)
-                        ->subject($subjectLabel)
-                        ->replyTo($validated['email'], $validated['name']);
-            });
-
-   
-// Якщо це замовлення з модалки - повертаємо назад
-if ($request->has('product_name')) {
-    return back()->with('success', 'Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
-}
-
-// Інакше на головну
-return redirect()->route('home')
-           ->with('success', 'Дякуємо! Ваше звернення відправлено. Ми зв\'яжемося з вами найближчим часом.');
+            // Інакше на головну
+            return redirect()->route('home')
+                ->with('success', 'Дякуємо! Ваше звернення відправлено. Ми зв\'яжемося з вами найближчим часом.');
 
         } catch (\Exception $e) {
-            // При помилці повертаємось назад
+            \Log::error('ContactController submit error: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+                'request' => $request->all(),
+            ]);
             return back()
-                   ->with('error', 'Виникла помилка при відправці. Будь ласка, спробуйте пізніше або зателефонуйте нам.')
-                   ->withInput();
+                ->with('error', 'Виникла помилка при відправці. Будь ласка, спробуйте пізніше або зателефонуйте нам.')
+                ->withInput();
         }
     }
 

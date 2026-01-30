@@ -1,5 +1,5 @@
 <div class="support-form-container">
-    <form action="{{ '#' }}" method="POST" class="vist-contact-form" novalidate>
+    <form action="{{ route('contact.submit') }}" method="POST" class="vist-contact-form" novalidate>
         @csrf
         
         <div class="form-group">
@@ -53,8 +53,8 @@
         </div>
         
         <!-- Honeypot для захисту від спаму -->
-        <div style="position: absolute; left: -9999px;">
-            <input type="text" name="company" tabindex="-1" autocomplete="off">
+        <div style="position: absolute; left: -9999px;" aria-hidden="true">
+            <input type="text" name="website_url" tabindex="-1" autocomplete="new-password">
         </div>
         
         @if(session('success'))

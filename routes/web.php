@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\AppealController;
 use App\Http\Controllers\ContactController;
 
 // Головна сторінка
@@ -32,7 +33,7 @@ Route::get('/servers', [ProductCatalogController::class, 'index'])
     ->name('servers.index');
 
 Route::get('/industrial', [ProductCatalogController::class, 'index'])
-    ->defaults('type', 'industrial')
+    ->defaults('type', 'ipc')
     ->name('industrial.index');
 
 Route::get('/ups', [ProductCatalogController::class, 'index'])
@@ -57,4 +58,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     })->name('dashboard');
     
     Route::resource('products', ProductController::class);
+
+    // Appeals (звернення)
+    Route::get('appeals', [AppealController::class, 'index'])->name('appeals.index');
+    Route::get('appeals/{appeal}', [AppealController::class, 'show'])->name('appeals.show');
+    Route::get('appeals/{appeal}/edit', [AppealController::class, 'edit'])->name('appeals.edit');
+    Route::put('appeals/{appeal}', [AppealController::class, 'update'])->name('appeals.update');
+    Route::delete('appeals/{appeal}', [AppealController::class, 'destroy'])->name('appeals.destroy');
+    Route::post('appeals/{appeal}/comments', [AppealController::class, 'addComment'])->name('appeals.addComment');
+    Route::post('appeals/{appeal}/reply', [AppealController::class, 'reply'])->name('appeals.reply');
 });

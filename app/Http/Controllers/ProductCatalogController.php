@@ -13,7 +13,7 @@ class ProductCatalogController extends Controller
             $type = $request->route('type');
         }
 
-        $validTypes = ['workstation', 'server', 'industrial', 'ups'];
+        $validTypes = ['workstation', 'server', 'ipc', 'ups'];
         if (!in_array($type, $validTypes)) {
             abort(404);
         }
@@ -25,13 +25,13 @@ class ProductCatalogController extends Controller
             'specs'  => fn($q) => $q->orderBy('sort_order'),
         ])
             ->active()
-            ->where('type', $type)
+            ->where('category', $type)
             ->get();
 
         $typeNames = [
             'workstation' => 'Робочі станції',
             'server' => 'Серверне обладнання',
-            'industrial' => 'Промислові ПК',
+            'ipc' => 'Промислові ПК',
             'ups' => 'ДБЖ',
         ];
 
