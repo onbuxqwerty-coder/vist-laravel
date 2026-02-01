@@ -2,6 +2,7 @@
             max-width: 1200px;
             margin: 50px auto;
             padding: 60px 20px;
+			
         }
         
         /* Hero */
@@ -166,7 +167,7 @@
         .support-form-container {
             max-width: 700px;
             margin: 0 auto;
-            background: white;
+            background: #9ed0f1;
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
