@@ -110,8 +110,14 @@
    Вмикається класом: .theme-light
    ========================= */
 
-.vist-contact-page.theme-light{
-  background: #bcd0ff;
+.vist-contact-page.theme-light {
+  /* Якщо CSS-файл лежить у public/css, використовуємо ../img/ */
+  background-image: url('/img/bg-contact.webp');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Опційно: фон залишається нерухомим при скролі */
 }
 
 .vist-contact-page.theme-light .vist-contact-panel{

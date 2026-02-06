@@ -2,9 +2,18 @@
 
 @section('title', 'Адмін-панель')
 
+@section('body-class', 'dashboard-page')
+
 @section('content')
 <style>
-body { background: #f5f7fa; }
+/* Специфічний padding для dashboard */
+.dashboard-page main {
+    padding-top: 80px; /* або яке значення вам потрібно */
+}
+
+body { background-image: url('/img/dashboard-bg.png');}
+/* решта ваших стилів... */
+
 .dashboard-container { max-width: 1200px; margin: 40px auto; padding: 20px; }
 .dashboard-header { background: #2c3e50; color: #fff; padding: 30px; border-radius: 12px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .dashboard-header h1 { font-size: 28px; margin: 0; }

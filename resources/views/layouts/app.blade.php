@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     @stack('styles')
 </head>
-<body>
+<body class="@yield('body-class')">
     @include('layouts.header')
     <main>
         @yield('content')

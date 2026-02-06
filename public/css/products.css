@@ -11,7 +11,7 @@
     margin: 140px auto;
     padding: 0 !important;
     min-height: 100vh;
-    background: #fff;
+    background: #bac7ffd9;
 }
 
 .container {
@@ -26,7 +26,7 @@
 
 .hero-products--ultra-compact {
     padding: 12px 0 !important;
-    background: #fff;
+    background: #bac7ffd9;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -128,7 +128,7 @@
 
 .breadcrumbs {
     padding: 8px 0;
-    background: #f8f8f8;
+    background: #bac7ffd9;
     border-bottom: 1px solid #e0e0e0;
     font-size: 0.9rem;
 }
@@ -164,7 +164,7 @@
 
 .products-list {
     padding: 16px 0;
-    background: #f8f8f8;
+    background: #bac7ffd9;
 }
 
 .products-count {
@@ -242,7 +242,7 @@
    ============================================================================ */
 
 .why-vist-section {
-    background: #fff;
+    background: #bac7ffd9;
     padding: 60px 20px;
 }
 
