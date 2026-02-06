@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan config:clear:*)",
+      "Bash(php artisan:*)",
+      "Bash(cmd /c \"cd /d C:\\\\Users\\\\liqwood\\\\Laragon-Projects\\\\vist-laravel && php artisan config:clear && php artisan cache:clear && php artisan view:clear\")",
+      "Bash(cmd /c \"cd /d C:\\\\Users\\\\liqwood\\\\Laragon-Projects\\\\vist-laravel && C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.14-Win32-vs16-x64\\\\php.exe artisan config:clear\")",
+      "Bash(cmd /c \"where php\")",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64\\\\php.exe\" \"C:\\\\Users\\\\liqwood\\\\Laragon-Projects\\\\vist-laravel\\\\artisan\" config:clear)",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64\\\\php.exe\" \"C:\\\\Users\\\\liqwood\\\\Laragon-Projects\\\\vist-laravel\\\\artisan\" cache:clear)",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64\\\\php.exe\" \"C:\\\\Users\\\\liqwood\\\\Laragon-Projects\\\\vist-laravel\\\\artisan\" view:clear)",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\mysql\\\\mysql-8.4.3-winx64\\\\bin\\\\mysql.exe\":*)",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\mysql\\\\mysql-8.4.3-winx64\\\\bin\\\\mysql.exe\" -u root -e \"USE vist; SELECT COUNT\\(*\\) as total FROM product_images; SELECT id, product_id, path, is_primary, sort_order FROM product_images LIMIT 10;\")",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\mysql\\\\mysql-8.4.3-winx64\\\\bin\\\\mysql.exe\" -u root -e \"USE vist; DESCRIBE product_images;\")",
+      "Bash(\"C:\\\\laragon\\\\bin\\\\mysql\\\\mysql-8.4.3-winx64\\\\bin\\\\mysql.exe\" -u root -e \"USE vist; UPDATE product_images SET image = REPLACE\\(image, ''img/hardware/'', ''img/products/''\\);\")",
+      "Bash(php:*)",
+      "Bash(where:*)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\":*)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" make:migration:*)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" migrate)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" migrate --path=database/migrations/2026_01_30_215821_create_appeals_table.php)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" route:list --name=appeal)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" tinker --execute=\"echo \\\\App\\\\Models\\\\User::count\\(\\);\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" tinker --execute=\"App\\\\Models\\\\User::all\\([''id'',''name'',''email'']\\)->each\\(fn\\($u\\) => print\\($u->id.'' | ''.$u->email.'' | ''.$u->name.PHP_EOL\\)\\);\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" tinker --execute=\"foreach\\(App\\\\Models\\\\User::all\\(\\) as $u\\) { echo $u->id . '' | '' . $u->email . '' | '' . $u->name . PHP_EOL; }\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" -r:*)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/_check_users.php\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/_check_password.php\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/_check_appeals.php\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" view:clear)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/_test_submit.php\")",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" route:clear)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nДодано систему звернень \\(Appeals\\) з Back Office\n\n- Створено таблиці appeals та comments з міграціями\n- Додано моделі Appeal та Comment з відношеннями\n- Додано Admin\\\\AppealController \\(перегляд, редагування, коментарі, email-відповідь\\)\n- Додано AppealReply Mailable та email-шаблон\n- ContactController: збереження звернень у БД замість відправки email\n- Виправлено honeypot \\(company → website_url\\) — браузер автозаповнював поле\n- Виправлено action форми contact-form на route\\(''contact.submit''\\)\n- Виправлено маршрут /industrial \\(type: industrial → ipc\\)\n- Оновлено dashboard з картками Продукти та Звернення\n- Переадресація після авторизації на /admin/dashboard\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(git commit:*)",
+      "Bash(\"C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe\" \"C:/Users/liqwood/Laragon-Projects/vist-laravel/artisan\" tinker --execute=\"echo App\\\\Models\\\\Appeal::count\\(\\) . '' appeals deleted''; App\\\\Models\\\\Appeal::query\\(\\)->delete\\(\\);\")",
+      "Bash(ls:*)"
+    ]
+  }
+}

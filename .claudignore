@@ -1,0 +1,26 @@
+# Залежності та системні папки
+/vendor/
+/node_modules/
+/public/build/
+/public/storage/
+
+# Кеші та логі Laravel
+/storage/framework/
+/storage/logs/
+/storage/debugbar/
+/bootstrap/cache/
+
+# Бази даних та середовище
+.env
+.env.backup
+/database/*.sqlite
+
+# Ресурси, які Claude не зможе прочитати ефективно
+/public/fonts/
+/public/images/
+/public/svg/
+/resources/fonts/
+
+# Тести та покриття (якщо не працюєте над ними прямо зараз)
+/tests/_output/
+/.phpunit.cache/
