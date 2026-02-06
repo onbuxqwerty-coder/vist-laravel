@@ -96,8 +96,8 @@
                         };
                     @endphp
                     <th class="sortable"><a href="{{ $getSortLink('id') }}">ID {!! $getSortIcon('id') !!}</a></th>
-                    <th class="sortable"><a href="{{ $getSortLink('name') }}">Назва {!! $getSortIcon('name') !!}</a></th>
-                    <th class="sortable"><a href="{{ $getSortLink('type') }}">Категорія {!! $getSortIcon('type') !!}</a></th>
+                    <th class="sortable"><a href="{{ $getSortLink('title') }}">Назва {!! $getSortIcon('title') !!}</a></th>
+                    <th class="sortable"><a href="{{ $getSortLink('category') }}">Категорія {!! $getSortIcon('category') !!}</a></th>
                     <th class="sortable"><a href="{{ $getSortLink('price') }}">Ціна {!! $getSortIcon('price') !!}</a></th>
                     <th class="sortable"><a href="{{ $getSortLink('is_active') }}">Статус {!! $getSortIcon('is_active') !!}</a></th>
                     <th>Дані</th>
@@ -108,22 +108,22 @@
                 <tbody>
                 @foreach($products as $product)
                     @php
-                        $type = $product->type ?? 'other';
+                        $type = $product->category ?? 'other';
                         $typeLabel = $typeLabels[$type] ?? $type;
                         $specsCount = $product->specs()->count();
                         $imagesCount = $product->images()->count();
                     @endphp
                     <tr class="{{ $product->is_active ? '' : 'inactive-row' }}" data-product-id="{{ $product->id }}">
                         <td class="checkbox-cell">
-                            <input type="checkbox" 
-                                   name="active_products[]" 
-                                   value="{{ $product->id }}" 
-                                   class="product-checkbox checkbox-item" 
-                                   {{ $product->is_active ? 'checked' : '' }} 
+                            <input type="checkbox"
+                                   name="active_products[]"
+                                   value="{{ $product->id }}"
+                                   class="product-checkbox checkbox-item"
+                                   {{ $product->is_active ? 'checked' : '' }}
                                    onchange="updateCount(); highlightRow(this);">
                         </td>
                         <td class="product-id">#{{ $product->id }}</td>
-                        <td class="product-title" title="{{ $product->name }}">{{ Str::limit($product->name, 50) }}</td>
+                        <td class="product-title" title="{{ $product->title }}">{{ Str::limit($product->title, 50) }}</td>
                         <td>
                             <span class="category-badge {{ $type }}">{{ $typeLabel }}</span>
                         </td>
@@ -143,7 +143,7 @@
                         <td>
                             <div class="actions">
                                 <a href="{{ route('admin.products.edit', $product->id) }}" class="btn-action btn-edit">✏️ Редагувати</a>
-                                <button onclick="deleteProduct({{ $product->id }}, '{{ addslashes($product->name) }}')" class="btn-action btn-delete">🗑️ Видалити</button>
+                                <button onclick="deleteProduct({{ $product->id }}, '{{ addslashes($product->title) }}')" class="btn-action btn-delete">🗑️ Видалити</button>
                             </div>
                         </td>
                     </tr>

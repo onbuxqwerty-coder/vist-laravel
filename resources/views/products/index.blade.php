@@ -31,7 +31,7 @@
 				@endphp
 
 				@if($cardImage)
-					<img src="{{ $product->main_image_url }}" alt="{{ $product->name }}">
+					<img src="{{ $product->main_image_url }}" alt="{{ $product->title }}">
 				@else
 					<div style="font-size: 64px; opacity: 0.3;">💻</div>
 				@endif
@@ -41,10 +41,10 @@
 
                 
                 <div class="product-card-content">
-                    <h3 class="product-card-title">{{ $product->name }}</h3>
+                    <h3 class="product-card-title">{{ $product->title }}</h3>
                     
-                    @if($product->short_desc)
-                        <p class="product-desc">{{ $product->short_desc }}</p>
+                    @if($product->subtitle)
+                        <p class="product-desc">{{ $product->subtitle }}</p>
                     @endif
                     
                     <div class="product-price">
@@ -163,9 +163,9 @@ let currentProduct = null;
 
 function openPanel(product) {
     currentProduct = product;
-    document.getElementById('panelTitle').textContent = product.name;
+    document.getElementById('panelTitle').textContent = product.title;
     document.getElementById('panelPrice').textContent = formatPrice(product.price) + ' ' + product.currency;
-    document.getElementById('panelDescription').textContent = product.description || product.short_desc || 'Опис продукту';
+    document.getElementById('panelDescription').textContent = product.description || product.subtitle || 'Опис продукту';
     
     // Галерея
     const gallery = document.getElementById('panelGallery');
@@ -173,7 +173,7 @@ function openPanel(product) {
         const mainImg = product.images[0].image;
         let galleryHTML = `
             <div class="main-image" id="mainImage">
-                <img src="{{ asset('') }}${mainImg}" alt="${product.name}">
+                <img src="{{ asset('') }}${mainImg}" alt="${product.title}">
             </div>
         `;
         if (product.images.length > 1) {
@@ -290,8 +290,8 @@ document.addEventListener('keydown', function(e) {
 function orderProduct() {
             if (currentProduct) {
                 // Заповнюємо назву продукту
-                document.getElementById('modalProductName').textContent = currentProduct.name;
-                document.getElementById('productNameInput').value = currentProduct.name;
+                document.getElementById('modalProductName').textContent = currentProduct.title;
+                document.getElementById('productNameInput').value = currentProduct.title;
                 
                 // Відкриваємо модальне вікно
                 document.getElementById('orderModal').classList.add('active');

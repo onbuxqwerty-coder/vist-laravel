@@ -25,7 +25,7 @@ class ProductController extends Controller
     {
         $sortColumn = $request->get('sort', 'created_at');
         $sortOrder = $request->get('order', 'desc');
-        $allowedColumns = ['id', 'name', 'type', 'price', 'is_active', 'created_at'];
+        $allowedColumns = ['id', 'title', 'category', 'price', 'is_active', 'created_at'];
 
         if (!in_array($sortColumn, $allowedColumns)) {
             $sortColumn = 'created_at';
@@ -57,12 +57,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'type'        => 'required|in:' . implode(',', array_keys($this->typeLabels)),
+            'title'       => 'required|string|max:255',
+            'category'    => 'required|in:' . implode(',', array_keys($this->typeLabels)),
             'price'       => 'required|numeric|min:0',
             'is_active'   => 'boolean',
             'slug'        => 'nullable|string|max:255',
-            'short_desc'  => 'nullable|string',
+            'subtitle'    => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'currency'    => 'nullable|string|max:10',
             'images.*'    => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
@@ -70,7 +70,7 @@ class ProductController extends Controller
 
         // Автогенерація slug якщо не вказано
         if (empty($validated['slug'])) {
-            $validated['slug'] = \Illuminate\Support\Str::slug($validated['name']);
+            $validated['slug'] = \Illuminate\Support\Str::slug($validated['title']);
         }
 
         // Встановлюємо значення за замовчуванням
@@ -139,12 +139,12 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'type'        => 'required|in:' . implode(',', array_keys($this->typeLabels)),
+            'title'       => 'required|string|max:255',
+            'category'    => 'required|in:' . implode(',', array_keys($this->typeLabels)),
             'price'       => 'required|numeric|min:0',
             'is_active'   => 'boolean',
             'slug'        => 'nullable|string|max:255',
-            'short_desc'  => 'nullable|string',
+            'subtitle'    => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'currency'    => 'nullable|string|max:10',
             'images.*'    => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
@@ -152,7 +152,7 @@ class ProductController extends Controller
 
         // Автогенерація slug якщо не вказано
         if (empty($validated['slug'])) {
-            $validated['slug'] = \Illuminate\Support\Str::slug($validated['name']);
+            $validated['slug'] = \Illuminate\Support\Str::slug($validated['title']);
         }
 
         // Встановлюємо значення

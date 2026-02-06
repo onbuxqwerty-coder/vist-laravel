@@ -12,19 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('sku', 64)->unique()->nullable();
-            $table->string('name');
+            $table->id()->unsigned();
+            $table->string('title');
             $table->string('subtitle')->nullable();
-            $table->text('description')->nullable();
-            $table->enum('product_type', ['workstation', 'server', 'ipc', 'storage', 'other']);
-            $table->enum('status', ['in_stock', 'out_of_stock', 'by_order'])->default('by_order');
-            $table->integer('warranty_months')->default(12);
-            $table->decimal('price', 12, 2)->nullable();
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
+            $table->enum('category', ['workstation', 'server', 'ipc', 'ups'])->default('workstation');
+            $table->decimal('price', 12, 2)->default(0);
+            $table->char('currency', 3)->default('UAH');
+            $table->boolean('is_active')->default(true);
+            $table->string('status', 50)->default('in_stock');
             $table->timestamps();
-            
-            $table->index('product_type');
-            $table->index('status');
         });
     }
 

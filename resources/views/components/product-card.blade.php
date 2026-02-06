@@ -21,7 +21,7 @@
         'storage' => 'ups',
     ];
     
-    $routeName = $categoryRoutes[$product->product_type] ?? 'products';
+    $routeName = $categoryRoutes[$product->category] ?? 'products';
     
     // Отримання головного зображення
     $mainImage = $product->images->where('is_primary', 1)->first() 
@@ -38,7 +38,7 @@
         'storage' => 'ДБЖ',
     ];
     
-    $typeLabel = $typeLabels[$product->product_type] ?? 'Обладнання';
+    $typeLabel = $typeLabels[$product->category] ?? 'Обладнання';
     
     // Мапа статусів
     $statusLabels = [
@@ -67,9 +67,9 @@
     $specs = $product->specs->take(3);
 @endphp
 
-<article class="vist-product-card vist-product-card--{{ $product->product_type }}">
+<article class="vist-product-card vist-product-card--{{ $product->category }}">
     <div class="vist-card-image">
-        <img src="{{ $imageUrl }}" alt="{{ $product->name }}" loading="lazy">
+        <img src="{{ $imageUrl }}" alt="{{ $product->title }}" loading="lazy">
     </div>
 
     <div class="vist-card-type">
@@ -77,7 +77,7 @@
     </div>
 
     <h3 class="vist-card-title">
-        {{ $product->name }}
+        {{ $product->title }}
     </h3>
 
     @if($product->subtitle)

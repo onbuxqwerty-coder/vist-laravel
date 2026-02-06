@@ -42,7 +42,7 @@
 
     <div class="form-container">
         <div class="form-header">
-            <h1>✏️ Редагування: {{ $product->name }}</h1>
+            <h1>✏️ Редагування: {{ $product->title }}</h1>
         </div>
 
         <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
@@ -58,7 +58,7 @@
                         <label>
                             Назва продукту <span class="required">*</span>
                         </label>
-                        <input type="text" name="name" value="{{ old('name', $product->name) }}" required>
+                        <input type="text" name="title" value="{{ old('title', $product->title) }}" required>
                         <span class="help-text">Наприклад: "Сервер Dell PowerEdge R720"</span>
                     </div>
 
@@ -76,10 +76,10 @@
                         <label>
                             Категорія <span class="required">*</span>
                         </label>
-                        <select name="type" required>
+                        <select name="category" required>
                             <option value="">-- Оберіть категорію --</option>
                             @foreach($typeLabels as $key => $label)
-                                <option value="{{ $key }}" {{ old('type', $product->type) == $key ? 'selected' : '' }}>
+                                <option value="{{ $key }}" {{ old('category', $product->category) == $key ? 'selected' : '' }}>
                                     {{ $label }}
                                 </option>
                             @endforeach
@@ -97,7 +97,7 @@
 
                 <div class="form-group">
                     <label>Короткий опис</label>
-                    <textarea name="short_desc" rows="3">{{ old('short_desc', $product->short_desc) }}</textarea>
+                    <textarea name="subtitle" rows="3">{{ old('subtitle', $product->subtitle) }}</textarea>
                     <span class="help-text">Короткий опис для каталогу (1-2 речення)</span>
                 </div>
 
