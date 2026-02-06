@@ -24,6 +24,9 @@ yarn-error.log
 # Product images (uploaded content)
 public/img/products/*
 
+# Database dumps
+database/u746005963_vist.sql
+
 # Backup files
 *.bak_*
 
