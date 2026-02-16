@@ -368,6 +368,12 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Order modal */
 .modal-overlay {
     position: fixed;

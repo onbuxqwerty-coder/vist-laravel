@@ -625,6 +625,7 @@ h1 {
 .brands-slider {
     overflow: hidden;
     white-space: nowrap;
+    background-color: #ffffff;
 }
 
 .swiper-wrapper { /* Або .slide-track, якщо залишите стару назву */
@@ -772,9 +773,26 @@ h1 {
 }
 
 .cards-grid-hero4 {
-	background: rgba(186, 199, 255, 0.85);
+	background-image: url('/img/bg-greed-hero4.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 	padding-top: 10px;
 	padding-bottom: 50px;
+	position: relative;
+}
+
+.cards-grid-hero4::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 0;
+}
+
+.cards-grid-hero4 > * {
+	position: relative;
+	z-index: 1;
 }
 
 /* ---------- Tablet ---------- */

@@ -15,7 +15,6 @@
     /* 5. Фон тепер розтягнеться на всю ширину */
     background: rgba(186, 199, 255, 0.85);
 }
-}
 
 .page-hero {
 	text-align: center;
@@ -51,6 +50,7 @@
 
     /* 2. Центруємо вміст сітки (якщо карток буде менше ніж 3 у рядку) */
     justify-content: center;
+    max-width: 1200px;
 }
 
 .product-card {
@@ -354,4 +354,24 @@
     margin-top: 40px;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 90% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        width: 95% !important;
+        gap: 20px;
+    }
+
+    .side-panel {
+        width: 100%;
+        right: -100%;
+    }
 }
