@@ -8,6 +8,7 @@
 
 @section('content')
 
+<div class="support-bg">
 <main class="support-page">
 
     <!-- Hero -->
@@ -201,14 +202,61 @@
             <h2>📧 Форма зворотнього зв'язку</h2>
             <p>Заповніть форму, і ми зв'яжемося з вами найближчим часом</p>
         </div>
-        
-        @include('components.contact-form', [
-            'showSubject' => true,
-            'showNote' => true,
-            'note' => 'Після відправлення буде автоматичне повернення на головну.'
-        ])
+
+        <div class="glass-form-wrapper">
+            <div class="glass-form">
+                <h1>Форма зв'язку</h1>
+
+                @if(session('success'))
+                    <div class="success">{{ session('success') }}</div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert-error">{{ session('error') }}</div>
+                @endif
+
+                <form method="POST" action="{{ route('contact.submit') }}">
+                    @csrf
+
+                    <label for="name">Ім'я</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+                    @error('name') <div class="error">{{ $message }}</div> @enderror
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+                    @error('email') <div class="error">{{ $message }}</div> @enderror
+
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" required>
+                    @error('phone') <div class="error">{{ $message }}</div> @enderror
+
+                    <label for="subject">Тема звернення</label>
+                    <select id="subject" name="subject" required>
+                        <option value="" disabled {{ old('subject') ? '' : 'selected' }}>-- Оберіть тему --</option>
+                        <option value="Загальне питання" {{ old('subject') == 'Загальне питання' ? 'selected' : '' }}>Загальне питання</option>
+                        <option value="Технічна підтримка" {{ old('subject') == 'Технічна підтримка' ? 'selected' : '' }}>Технічна підтримка</option>
+                        <option value="Пропозиція" {{ old('subject') == 'Пропозиція' ? 'selected' : '' }}>Пропозиція</option>
+                        <option value="Скарга" {{ old('subject') == 'Скарга' ? 'selected' : '' }}>Скарга</option>
+                        <option value="Інше" {{ old('subject') == 'Інше' ? 'selected' : '' }}>Інше</option>
+                    </select>
+                    @error('subject') <div class="error">{{ $message }}</div> @enderror
+
+                    <label for="message">Повідомлення</label>
+                    <textarea id="message" name="message" required>{{ old('message') }}</textarea>
+                    @error('message') <div class="error">{{ $message }}</div> @enderror
+
+                    {{-- Honeypot --}}
+                    <div style="position: absolute; left: -9999px;" aria-hidden="true">
+                        <input type="text" name="website_url" tabindex="-1" autocomplete="new-password">
+                    </div>
+
+                    <button type="submit">Надіслати</button>
+                </form>
+            </div>
+        </div>
     </section>
 </main>
+</div>
 
 @endsection
 

@@ -1,8 +1,40 @@
+        .support-bg {
+            background-image: url('/img/bg-support.png?v=2');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .support-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        .support-bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
         .support-page {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 0 auto;
             padding: 60px 20px;
-			
+            margin-top: 30px;
+        }
+
+        .support-page h1,
+        .support-page h2,
+        .support-page h3,
+        .support-page p,
+        .support-page a,
+        .support-page li {
+            color: #ffffff;
         }
         
         /* Hero */
@@ -13,14 +45,14 @@
         
         .support-hero h1 {
             font-size: 42px;
-            color: #2c3e50;
+            color: #ffffff;
             margin-bottom: 15px;
             font-weight: 700;
         }
-        
+
         .support-hero p {
             font-size: 18px;
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.8);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -34,19 +66,21 @@
         }
         
         .contact-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             text-align: center;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .contact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            border-color: #3498db;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .contact-icon {
@@ -55,24 +89,24 @@
         }
         
         .contact-card h3 {
-            color: #2c3e50;
+            color: #ffffff;
             margin-bottom: 10px;
             font-size: 20px;
         }
-        
+
         .contact-card a {
-            color: #3498db;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 600;
             font-size: 18px;
         }
-        
+
         .contact-card a:hover {
             text-decoration: underline;
         }
-        
+
         .contact-card p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.8);
             margin: 5px 0 0 0;
             font-size: 14px;
         }
@@ -89,13 +123,13 @@
         
         .section-header h2 {
             font-size: 32px;
-            color: #2c3e50;
+            color: #ffffff;
             margin-bottom: 10px;
             font-weight: 700;
         }
-        
+
         .section-header p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.8);
             font-size: 16px;
         }
         
@@ -106,38 +140,40 @@
         }
         
         .faq-item {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 12px;
             margin-bottom: 15px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #ecf0f1;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .faq-question {
             width: 100%;
             padding: 20px 25px;
-            background: white;
+            background: transparent;
             border: none;
             text-align: left;
             font-size: 16px;
             font-weight: 600;
-            color: #2c3e50;
+            color: #ffffff;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
         }
-        
+
         .faq-question:hover {
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.1);
         }
-        
+
         .faq-question::after {
             content: '+';
             font-size: 24px;
-            color: #3498db;
+            color: rgba(255, 255, 255, 0.8);
             transition: transform 0.3s ease;
         }
         
@@ -158,89 +194,142 @@
         }
         
         .faq-answer p {
-            color: #555;
+            color: #ffffff;
             line-height: 1.8;
             margin: 0;
         }
         
-        /* Форма підтримки */
-        .support-form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: #9ed0f1;
+        /* Glass-morphism форма */
+        .glass-form-wrapper {
+            display: flex;
+            justify-content: center;
+            border-radius: 20px;
+            padding: 40px 16px;
+        }
+
+        .glass-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
             padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
-        .form-group label .required {
-            color: #e74c3c;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #dfe6e9;
-            border-radius: 8px;
-            font-size: 15px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .btn-submit-support {
-            width: 100%;
-            background: #3498db;
+            max-width: 500px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-        
-        .btn-submit-support:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+
+        .glass-form h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .glass-form form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .glass-form label {
+            width: 100%;
+            display: block;
+            margin-bottom: 6px;
+            color: white;
+        }
+
+        .glass-form input,
+        .glass-form textarea,
+        .glass-form select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+            transition: 0.3s ease;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .glass-form select option {
+            background-color: #2D455D;
+            color: white;
+        }
+
+        .glass-form input::placeholder,
+        .glass-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .glass-form input:focus,
+        .glass-form textarea:focus,
+        .glass-form select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-form .error {
+            width: 80%;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+            font-size: 0.9rem;
+        }
+
+        .glass-form .success {
+            background: rgba(0, 200, 100, 0.15);
+            border: 1px solid rgba(0, 200, 100, 0.3);
+            color: #a0ffb0;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .glass-form .alert-error {
+            background: rgba(255, 80, 80, 0.15);
+            border: 1px solid rgba(255, 80, 80, 0.3);
+            color: #ff6b6b;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .glass-form button {
+            width: 80%;
+            padding: 12px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .glass-form button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
         }
         
         /* Робочий час */
         .working-hours {
             max-width: 600px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .hours-list {
@@ -253,7 +342,7 @@
             display: flex;
             justify-content: space-between;
             padding: 15px 0;
-            border-bottom: 1px solid #ecf0f1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .hours-item:last-child {
@@ -262,15 +351,15 @@
         
         .hours-day {
             font-weight: 600;
-            color: #2c3e50;
+            color: #ffffff;
         }
-        
+
         .hours-time {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.8);
         }
-        
+
         .hours-time.closed {
-            color: #e74c3c;
+            color: #ff6b6b;
         }
         
         /* Сервіси */
@@ -281,16 +370,20 @@
         }
         
         .service-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
-        
+
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .service-icon {
@@ -299,20 +392,20 @@
         }
         
         .service-card h3 {
-            color: #2c3e50;
+            color: #ffffff;
             margin-bottom: 10px;
             font-size: 20px;
         }
-        
+
         .service-card p {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             margin: 0;
         }
-        
+
         .service-card ul {
             margin: 15px 0 0 20px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.8);
         }
         
         .service-card li {
@@ -343,12 +436,16 @@
             .support-hero h1 {
                 font-size: 32px;
             }
-            
+
             .quick-contacts {
                 grid-template-columns: 1fr;
             }
-            
-            .support-form-container {
+
+            .glass-form-wrapper {
+                padding: 20px 10px;
+            }
+
+            .glass-form {
                 padding: 25px;
             }
         }
