@@ -53,6 +53,7 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name(
 
 // Admin Routes (захищені)
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::redirect('/', '/admin/dashboard');
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');

@@ -4,8 +4,8 @@
 
 @section('content')
 <style>
-body { background: #f5f7fa; }
-.appeals-page { max-width: 1200px; margin: 0 auto; padding: 20px; }
+body { background: url('/img/dashboard-bg.png') no-repeat center center fixed; background-size: cover; }
+.appeals-page { max-width: 1200px; margin: 0 auto; padding: 20px; padding-top: 140px; }
 .appeals-page h1 { font-size: 24px; color: #2c3e50; margin-bottom: 24px; text-align: center; }
 .admin-nav { background: #2c3e50; padding: 12px 24px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
 .admin-nav-title { color: #fff; font-size: 18px; font-weight: bold; }
@@ -42,13 +42,14 @@ body { background: #f5f7fa; }
     <nav class="admin-nav">
         <div class="admin-nav-title">
             Панель управління звернень
-            <span style="font-size: 14px; opacity: 0.8; margin-left: 10px;">
-                ({{ auth()->user()->name }})
-            </span>
         </div>
+        <span style="font-size: 20px; color: #ecf0f1; opacity: 0.9;">
+            Звернення ({{ $appeals->total() }})
+        </span>
         <div class="admin-nav-links">
             <a href="{{ route('admin.appeals.index') }}" class="nav-link active">Звернення</a>
             <a href="{{ route('admin.products.index') }}" class="nav-link">Продукти</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">Дашборд</a>
             <a href="{{ route('home') }}" class="nav-link">На головну</a>
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
@@ -65,7 +66,6 @@ body { background: #f5f7fa; }
         <div class="alert alert-error">{{ session('error') }}</div>
     @endif
 
-    <h1>Звернення ({{ $appeals->total() }})</h1>
 
     @forelse($appeals as $appeal)
         <div class="card">
