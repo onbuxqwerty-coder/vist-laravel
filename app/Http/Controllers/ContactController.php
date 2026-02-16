@@ -45,7 +45,7 @@ class ContactController extends Controller
 
         // Додаємо subject тільки якщо він є
         if ($request->has('subject')) {
-            $rules['subject'] = 'required|in:consultation,order,warranty,repair,configuration,other';
+            $rules['subject'] = 'required|in:Загальне питання,Технічна підтримка,Пропозиція,Скарга,Інше,consultation,order,warranty,repair,configuration,other';
         }
         
         // Додаємо product_name якщо є (для замовлень з каталогу)
@@ -67,7 +67,9 @@ class ContactController extends Controller
         if ($request->has('product_name')) {
             $subjectLabel = 'Замовлення: ' . ($validated['product_name'] ?? '');
         } elseif ($request->has('subject')) {
-            $subjectLabel = $this->getSubjectLabel($validated['subject'] ?? 'other');
+            $rawSubject = $validated['subject'] ?? 'other';
+            // Якщо subject вже українською (з контактної форми) — використовуємо як є
+            $subjectLabel = $this->getSubjectLabel($rawSubject);
         } else {
             $subjectLabel = 'Звернення з форми контактів';
         }
@@ -107,12 +109,15 @@ class ContactController extends Controller
     private function getSubjectLabel(string $subject): string
     {
         return match($subject) {
+            // English keys (from support page component)
             'consultation' => 'Технічна консультація',
             'order' => 'Питання щодо замовлення',
             'warranty' => 'Гарантійне обслуговування',
             'repair' => 'Ремонт обладнання',
             'configuration' => 'Підбір конфігурації',
             'other' => 'Інше питання',
+            // Ukrainian values (from contact page) — pass through as-is
+            'Загальне питання', 'Технічна підтримка', 'Пропозиція', 'Скарга', 'Інше' => $subject,
             default => 'Звернення',
         };
     }
