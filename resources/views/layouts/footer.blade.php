@@ -20,7 +20,7 @@
 					 rel="noreferrer"
 					 aria-label="WhatsApp">
 					 
-					<img src="img/logo/media/whatsapp.png"
+					<img src="{{ asset('img/logo/media/whatsapp.png') }}"
 						 alt="WhatsApp"
 						 loading="lazy"
 						 width="45"
@@ -32,7 +32,7 @@
 					 rel="noreferrer"
 					 aria-label="Telegram">
 					 
-					<img src="img/logo/media/telegram.png"
+					<img src="{{ asset('img/logo/media/telegram.png') }}"
 						 alt="Telegram"
 						 loading="lazy"
 						 width="45"
@@ -44,7 +44,7 @@
 					 rel="noreferrer"
 					 aria-label="Viber">
 					 
-					<img src="img/logo/media/viber.png"
+					<img src="{{ asset('img/logo/media/viber.png') }}"
 						 alt="Viber"
 						 loading="lazy"
 						 width="45"
