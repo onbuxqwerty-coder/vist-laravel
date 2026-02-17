@@ -2,6 +2,8 @@
 
 @section('title', 'Про компанію VIST')
 
+@section('body-class', 'about-page')
+
 @section('content')
 
 <main>

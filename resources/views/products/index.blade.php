@@ -2,6 +2,8 @@
 
 @section('title', $typeName)
 
+@section('body-class', 'product-catalog-page')
+
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/products-index.css') }}">
 @endpush

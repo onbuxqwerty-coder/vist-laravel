@@ -1,5 +1,10 @@
 /* about-us.css */
 
+body.about-page {
+    background: url('/img/bg-product.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
 .about-us {
     display: flex;
     align-items: center;
@@ -31,7 +36,28 @@
 .about {
 	width: 70%;
 	height: auto;
-	    margin: 0 auto 30px;
+	margin: 0 auto 30px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.about h1 {
+	color: #fff;
+}
+
+.about h2 {
+	color: #fff;
+}
+
+.about h3 {
+	color: #fff;
+}
+
+.about p {
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.about li {
+	color: rgba(255, 255, 255, 0.85);
 }
 
 /* АДАПТИВНІСТЬ */

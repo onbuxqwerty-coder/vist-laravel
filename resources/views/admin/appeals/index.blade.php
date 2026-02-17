@@ -7,7 +7,7 @@
 body { background: url('/img/dashboard-bg.png') no-repeat center center fixed; background-size: cover; }
 .appeals-page { max-width: 1200px; margin: 0 auto; padding: 20px; padding-top: 140px; }
 .appeals-page h1 { font-size: 24px; color: #fff; margin-bottom: 24px; text-align: center; }
-.admin-nav { background: #2c3e50; padding: 12px 24px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
+.admin-nav { background: #2c3e50; padding: 12px 24px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; border: 1px solid rgba(255, 255, 255, 0.2); }
 .admin-nav-title { color: #fff; font-size: 18px; font-weight: bold; }
 .admin-nav-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .admin-nav-links .nav-link { color: #ecf0f1; text-decoration: none; padding: 6px 14px; border-radius: 4px; font-size: 14px; transition: background 0.2s; }

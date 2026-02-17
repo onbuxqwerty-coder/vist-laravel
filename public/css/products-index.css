@@ -1,7 +1,8 @@
 /* products-index.css — styles for products/index page */
 
-body {
-    background: rgba(188, 208, 255, 1) !important;
+body.product-catalog-page {
+    background: url('/img/bg-product.png') no-repeat center center fixed !important;
+    background-size: cover !important;
 }
 
 .workstation-page {
@@ -17,7 +18,7 @@ body {
 
 .page-hero h1 {
     font-size: 42px;
-    color: #2c3e50;
+    color: #fff;
     margin-bottom: 15px;
     font-weight: 700;
 }
