@@ -86,7 +86,7 @@
             <table>
                 <thead>
                 <tr>
-                    <th style="width: 60px;">
+                    <th style="width: 40px;">
                         <input type="checkbox" id="selectAllCheckbox" class="product-checkbox" onchange="toggleAll(this)">
                     </th>
                     @php
@@ -99,14 +99,14 @@
                             return $sortOrder === 'asc' ? '<span class="sort-icon active">▲</span>' : '<span class="sort-icon active">▼</span>';
                         };
                     @endphp
-                    <th class="sortable"><a href="{{ $getSortLink('id') }}">ID {!! $getSortIcon('id') !!}</a></th>
-                    <th class="sortable"><a href="{{ $getSortLink('title') }}">Назва {!! $getSortIcon('title') !!}</a></th>
-                    <th class="sortable"><a href="{{ $getSortLink('category') }}">Категорія {!! $getSortIcon('category') !!}</a></th>
-                    <th class="sortable"><a href="{{ $getSortLink('price') }}">Ціна {!! $getSortIcon('price') !!}</a></th>
-                    <th class="sortable"><a href="{{ $getSortLink('is_active') }}">Статус {!! $getSortIcon('is_active') !!}</a></th>
-                    <th>Дані</th>
-                    <th class="sortable"><a href="{{ $getSortLink('created_at') }}">Створено {!! $getSortIcon('created_at') !!}</a></th>
-                    <th>Дії</th>
+                    <th class="sortable" style="width: 40px;"><a href="{{ $getSortLink('id') }}">ID {!! $getSortIcon('id') !!}</a></th>
+                    <th class="sortable" style="width: 24%;"><a href="{{ $getSortLink('title') }}">Назва {!! $getSortIcon('title') !!}</a></th>
+                    <th class="sortable" style="width: 9%;"><a href="{{ $getSortLink('category') }}">Категорія {!! $getSortIcon('category') !!}</a></th>
+                    <th class="sortable" style="width: 8%;"><a href="{{ $getSortLink('price') }}">Ціна {!! $getSortIcon('price') !!}</a></th>
+                    <th class="sortable" style="width: 9%;"><a href="{{ $getSortLink('is_active') }}">Статус {!! $getSortIcon('is_active') !!}</a></th>
+                    <th style="width: 16%;">Дані</th>
+                    <th class="sortable" style="width: 9%;"><a href="{{ $getSortLink('created_at') }}">Створено {!! $getSortIcon('created_at') !!}</a></th>
+                    <th style="width: 19%;">Дії</th>
                 </tr>
                 </thead>
                 <tbody>

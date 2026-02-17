@@ -7,7 +7,7 @@ body.dashboard-page {
 }
 
 .manage-products-page {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 150px auto;
     padding: 0 20px;
 }
@@ -246,6 +246,7 @@ body.dashboard-page {
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 thead {
@@ -283,8 +284,10 @@ tbody td {
 
 .product-title {
     font-weight: 600;
-    max-width: 300px;
     color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .product-price {
@@ -365,15 +368,16 @@ tbody tr.inactive-row:hover {
 }
 
 .btn-action {
-    padding: 8px 16px;
+    padding: 6px 10px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 12px;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
+    white-space: nowrap;
 }
 
 .btn-edit {
