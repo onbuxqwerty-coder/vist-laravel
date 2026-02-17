@@ -10,7 +10,7 @@
 
 @section('content')
 <style>
-.appeal-show { max-width: 900px; margin: 150px auto; padding: 0 20px; }
+.appeal-show { max-width: 1200px; margin: 150px auto; padding: 0 20px; }
 .appeal-show h1 { font-size: 22px; margin-bottom: 24px; color: #fff; text-align: center; }
 .appeal-show h2 { font-size: 18px; margin-bottom: 16px; color: #fff; }
 .back { text-align: center; margin-bottom: 24px; }

@@ -10,7 +10,7 @@
 
 @section('content')
 <style>
-.appeal-edit { max-width: 900px; margin: 150px auto; padding: 0 20px; }
+.appeal-edit { max-width: 1200px; margin: 150px auto; padding: 0 20px; }
 .form-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); padding: 40px; border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); color: #fff; }
 .form-card h1 { font-size: 22px; margin: 0 0 30px 0; color: #fff; text-align: center; }
 .form-card label { display: block; margin-bottom: 8px; font-weight: 600; color: #fff; font-size: 14px; }
