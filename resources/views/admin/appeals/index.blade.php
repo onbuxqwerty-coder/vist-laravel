@@ -6,7 +6,7 @@
 <style>
 body { background: url('/img/dashboard-bg.png') no-repeat center center fixed; background-size: cover; }
 .appeals-page { max-width: 1200px; margin: 0 auto; padding: 20px; padding-top: 140px; }
-.appeals-page h1 { font-size: 24px; color: #2c3e50; margin-bottom: 24px; text-align: center; }
+.appeals-page h1 { font-size: 24px; color: #fff; margin-bottom: 24px; text-align: center; }
 .admin-nav { background: #2c3e50; padding: 12px 24px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
 .admin-nav-title { color: #fff; font-size: 18px; font-weight: bold; }
 .admin-nav-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -15,25 +15,25 @@ body { background: url('/img/dashboard-bg.png') no-repeat center center fixed; b
 .alert { padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; text-align: center; font-size: 14px; }
 .alert-success { background: #d4edda; color: #155724; }
 .alert-error { background: #f8d7da; color: #721c24; }
-.card { background: #fff; padding: 20px 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px; }
+.card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 20px 24px; border-radius: 16px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); margin-bottom: 16px; color: white; }
 .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.card-header .name { font-weight: bold; font-size: 16px; color: #2c3e50; }
-.card-header .date { font-size: 13px; color: #888; }
-.card-meta { font-size: 13px; color: #666; margin-bottom: 10px; }
+.card-header .name { font-weight: bold; font-size: 16px; color: #fff; }
+.card-header .date { font-size: 13px; color: rgba(255, 255, 255, 0.6); }
+.card-meta { font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px; }
 .card-meta span { margin-right: 16px; }
-.card-subject { display: inline-block; background: #e8f0fe; color: #1a5fb4; font-size: 13px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; }
-.card-product { display: inline-block; background: #fff3cd; color: #856404; font-size: 13px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; margin-left: 6px; }
-.card-message { font-size: 14px; color: #444; line-height: 1.5; }
+.card-subject { display: inline-block; background: rgba(52, 152, 219, 0.25); color: #7ec8f7; font-size: 13px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(52, 152, 219, 0.3); }
+.card-product { display: inline-block; background: rgba(241, 196, 15, 0.2); color: #f7dc6f; font-size: 13px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; margin-left: 6px; border: 1px solid rgba(241, 196, 15, 0.3); }
+.card-message { font-size: 20px; color: rgba(255, 255, 255, 0.85); line-height: 2.0; }
 .card-actions { margin-top: 12px; display: flex; gap: 8px; }
-.card-actions a, .card-actions button { font-size: 13px; padding: 5px 14px; border-radius: 4px; text-decoration: none; cursor: pointer; border: none; }
-.btn-view { background: #e8f0fe; color: #1a5fb4; }
-.btn-view:hover { background: #d0e2fc; }
-.btn-edit { background: #fff3cd; color: #856404; }
-.btn-edit:hover { background: #ffe69c; }
-.btn-delete { background: #f8d7da; color: #721c24; }
-.btn-delete:hover { background: #f1aeb5; }
-.empty-state { text-align: center; color: #888; padding: 60px 0; }
-.empty-state h2 { color: #aaa; margin-bottom: 10px; }
+.card-actions a, .card-actions button { font-size: 13px; padding: 5px 14px; border-radius: 8px; text-decoration: none; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease; }
+.btn-view { background: rgba(52, 152, 219, 0.2); color: #7ec8f7; }
+.btn-view:hover { background: rgba(52, 152, 219, 0.35); }
+.btn-edit { background: rgba(241, 196, 15, 0.2); color: #f7dc6f; }
+.btn-edit:hover { background: rgba(241, 196, 15, 0.35); }
+.btn-delete { background: rgba(231, 76, 60, 0.2); color: #f1948a; }
+.btn-delete:hover { background: rgba(231, 76, 60, 0.35); }
+.empty-state { text-align: center; color: rgba(255, 255, 255, 0.6); padding: 60px 0; }
+.empty-state h2 { color: rgba(255, 255, 255, 0.5); margin-bottom: 10px; }
 .pagination { text-align: center; margin-top: 24px; }
 .pagination nav { display: flex; justify-content: center; }
 </style>

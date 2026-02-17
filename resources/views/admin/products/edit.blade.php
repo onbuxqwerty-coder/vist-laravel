@@ -1,37 +1,40 @@
 @extends('layouts.app')
 
+@section('body-class', 'create-product-page')
+
 @push('styles')
+<link rel="stylesheet" href="{{ asset('css/admin-products.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin-form.css') }}">
 @endpush
 
 @section('content')
-<main class="add-product-page">
+<main class="manage-products-page">
     <nav class="admin-nav">
         <div class="admin-nav-title">
-            ✏️ Редагувати продукт
-            <span style="font-size: 14px; opacity: 0.8; margin-left: 10px;">
-                ({{ auth()->user()->name }})
-            </span>
+            Редагувати продукт
         </div>
         <div class="admin-nav-links">
-            <a href="{{ route('admin.products.index') }}" class="nav-link">📋 Список продуктів</a>
-            <a href="{{ route('home') }}" class="nav-link">🏠 На головну</a>
+            <a href="{{ route('admin.products.index') }}" class="nav-link">Продукти</a>
+            <a href="{{ route('admin.products.create') }}" class="nav-link">Додати продукт</a>
+            <a href="{{ route('admin.appeals.index') }}" class="nav-link">Звернення</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">Дашборд</a>
+            <a href="{{ route('home') }}" class="nav-link">На головну</a>
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
-                <button type="submit" class="nav-link" style="background: rgba(231, 76, 60, 0.2); border: none; cursor: pointer;">🚪 Вихід</button>
+                <button type="submit" class="nav-link" style="background: rgba(231, 76, 60, 0.2); border: none; cursor: pointer;">Вихід</button>
             </form>
         </div>
     </nav>
 
     @if(session('success'))
         <div class="alert alert-success">
-            ✅ {{ session('success') }}
+            {{ session('success') }}
         </div>
     @endif
 
     @if($errors->any())
         <div class="alert alert-error">
-            ❌ Помилки при заповненні форми:
+            Помилки при заповненні форми:
             <ul style="margin: 10px 0 0 20px;">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -42,7 +45,7 @@
 
     <div class="form-container">
         <div class="form-header">
-            <h1>✏️ Редагування: {{ $product->title }}</h1>
+            <h1>Редагування: {{ $product->title }}</h1>
         </div>
 
         <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
@@ -52,7 +55,7 @@
             <!-- ОСНОВНА ІНФОРМАЦІЯ -->
             <div class="form-section">
                 <h2>Основна інформація</h2>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>
@@ -109,45 +112,44 @@
 
                 <div class="checkbox-group">
                     <input type="checkbox" name="is_active" id="is_active" value="1" {{ old('is_active', $product->is_active) ? 'checked' : '' }}>
-                    <label for="is_active">✓ Опублікувати на сайті (активний)</label>
+                    <label for="is_active">Опублікувати на сайті (активний)</label>
                 </div>
             </div>
 
             <!-- ХАРАКТЕРИСТИКИ -->
             <div class="form-section">
-                <h2>📊 Технічні характеристики</h2>
-                
+                <h2>Технічні характеристики</h2>
+
                 <div class="specs-container" id="specsContainer">
                     @php
                         $existingSpecs = $product->specs ?? collect();
                         $specIndex = 0;
                     @endphp
-                    
+
                     @forelse($existingSpecs as $spec)
-                        <!-- Існуюча характеристика -->
                         <div class="spec-item">
                             <div class="form-group" style="margin: 0;">
                                 <label>Назва характеристики</label>
                                 <select name="specs[{{ $specIndex }}][name]" class="spec-name-select" onchange="toggleCustomInput(this)">
                                     <option value="">-- Оберіть характеристику --</option>
-                                    <option value="Device_Class" {{ $spec->spec_key == 'Device_Class' ? 'selected' : '' }}>Device_Class</option>
-                                    <option value="CPU" {{ $spec->spec_key == 'CPU' ? 'selected' : '' }}>CPU</option>
-                                    <option value="CPU_Type" {{ $spec->spec_key == 'CPU_Type' ? 'selected' : '' }}>CPU_Type</option>
-                                    <option value="RAM" {{ $spec->spec_key == 'RAM' ? 'selected' : '' }}>RAM</option>
-                                    <option value="RAM_Type" {{ $spec->spec_key == 'RAM_Type' ? 'selected' : '' }}>RAM_Type</option>
-                                    <option value="GPU" {{ $spec->spec_key == 'GPU' ? 'selected' : '' }}>GPU</option>
-                                    <option value="GPU_VRAM" {{ $spec->spec_key == 'GPU_VRAM' ? 'selected' : '' }}>GPU_VRAM</option>
-                                    <option value="Storage" {{ $spec->spec_key == 'Storage' ? 'selected' : '' }}>Storage</option>
-                                    <option value="Storage_Type" {{ $spec->spec_key == 'Storage_Type' ? 'selected' : '' }}>Storage_Type</option>
-                                    <option value="PSU" {{ $spec->spec_key == 'PSU' ? 'selected' : '' }}>PSU</option>
-                                    <option value="Form_Factor" {{ $spec->spec_key == 'Form_Factor' ? 'selected' : '' }}>Form_Factor</option>
-                                    <option value="Controller" {{ $spec->spec_key == 'Controller' ? 'selected' : '' }}>Controller</option>
-                                    <option value="Controller_Type" {{ $spec->spec_key == 'Controller_Type' ? 'selected' : '' }}>Controller_Type</option>
-                                    <option value="Management" {{ $spec->spec_key == 'Management' ? 'selected' : '' }}>Management</option>
-                                    <option value="Management_Type" {{ $spec->spec_key == 'Management_Type' ? 'selected' : '' }}>Management_Type</option>
-                                    <option value="OS" {{ $spec->spec_key == 'OS' ? 'selected' : '' }}>OS</option>
-                                    <option value="Other" {{ $spec->spec_key == 'Other' ? 'selected' : '' }}>Other</option>
-                                    <option value="custom">✏️ Власна назва...</option>
+                                    <option value="Device_Class" {{ $spec->spec_key == 'Device_Class' ? 'selected' : '' }}>Клас пристрою</option>
+                                    <option value="CPU" {{ $spec->spec_key == 'CPU' ? 'selected' : '' }}>Процесор</option>
+                                    <option value="CPU_Type" {{ $spec->spec_key == 'CPU_Type' ? 'selected' : '' }}>Тип процесора</option>
+                                    <option value="RAM" {{ $spec->spec_key == 'RAM' ? 'selected' : '' }}>Оперативна пам'ять</option>
+                                    <option value="RAM_Type" {{ $spec->spec_key == 'RAM_Type' ? 'selected' : '' }}>Тип пам'яті</option>
+                                    <option value="GPU" {{ $spec->spec_key == 'GPU' ? 'selected' : '' }}>Відеокарта</option>
+                                    <option value="GPU_VRAM" {{ $spec->spec_key == 'GPU_VRAM' ? 'selected' : '' }}>Відеопам'ять</option>
+                                    <option value="Storage" {{ $spec->spec_key == 'Storage' ? 'selected' : '' }}>Накопичувач</option>
+                                    <option value="Storage_Type" {{ $spec->spec_key == 'Storage_Type' ? 'selected' : '' }}>Тип накопичувача</option>
+                                    <option value="PSU" {{ $spec->spec_key == 'PSU' ? 'selected' : '' }}>Блок живлення</option>
+                                    <option value="Form_Factor" {{ $spec->spec_key == 'Form_Factor' ? 'selected' : '' }}>Форм-фактор</option>
+                                    <option value="Controller" {{ $spec->spec_key == 'Controller' ? 'selected' : '' }}>Контролер</option>
+                                    <option value="Controller_Type" {{ $spec->spec_key == 'Controller_Type' ? 'selected' : '' }}>Тип контролера</option>
+                                    <option value="Management" {{ $spec->spec_key == 'Management' ? 'selected' : '' }}>Управління</option>
+                                    <option value="Management_Type" {{ $spec->spec_key == 'Management_Type' ? 'selected' : '' }}>Тип управління</option>
+                                    <option value="OS" {{ $spec->spec_key == 'OS' ? 'selected' : '' }}>Операційна система</option>
+                                    <option value="Other" {{ $spec->spec_key == 'Other' ? 'selected' : '' }}>Інше</option>
+                                    <option value="custom">Власна назва...</option>
                                 </select>
                                 <input type="text" name="specs[{{ $specIndex }}][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
                             </div>
@@ -159,30 +161,29 @@
                         </div>
                         @php $specIndex++; @endphp
                     @empty
-                        <!-- Початкова характеристика якщо немає існуючих -->
                         <div class="spec-item">
                             <div class="form-group" style="margin: 0;">
                                 <label>Назва характеристики</label>
                                 <select name="specs[0][name]" class="spec-name-select" onchange="toggleCustomInput(this)">
                                     <option value="">-- Оберіть характеристику --</option>
-                                    <option value="Device_Class">Device_Class</option>
-                                    <option value="CPU">CPU</option>
-                                    <option value="CPU_Type">CPU_Type</option>
-                                    <option value="RAM">RAM</option>
-                                    <option value="RAM_Type">RAM_Type</option>
-                                    <option value="GPU">GPU</option>
-                                    <option value="GPU_VRAM">GPU_VRAM</option>
-                                    <option value="Storage">Storage</option>
-                                    <option value="Storage_Type">Storage_Type</option>
-                                    <option value="PSU">PSU</option>
-                                    <option value="Form_Factor">Form_Factor</option>
-                                    <option value="Controller">Controller</option>
-                                    <option value="Controller_Type">Controller_Type</option>
-                                    <option value="Management">Management</option>
-                                    <option value="Management_Type">Management_Type</option>
-                                    <option value="OS">OS</option>
-                                    <option value="Other">Other</option>
-                                    <option value="custom">✏️ Власна назва...</option>
+                                    <option value="Device_Class">Клас пристрою</option>
+                                    <option value="CPU">Процесор</option>
+                                    <option value="CPU_Type">Тип процесора</option>
+                                    <option value="RAM">Оперативна пам'ять</option>
+                                    <option value="RAM_Type">Тип пам'яті</option>
+                                    <option value="GPU">Відеокарта</option>
+                                    <option value="GPU_VRAM">Відеопам'ять</option>
+                                    <option value="Storage">Накопичувач</option>
+                                    <option value="Storage_Type">Тип накопичувача</option>
+                                    <option value="PSU">Блок живлення</option>
+                                    <option value="Form_Factor">Форм-фактор</option>
+                                    <option value="Controller">Контролер</option>
+                                    <option value="Controller_Type">Тип контролера</option>
+                                    <option value="Management">Управління</option>
+                                    <option value="Management_Type">Тип управління</option>
+                                    <option value="OS">Операційна система</option>
+                                    <option value="Other">Інше</option>
+                                    <option value="custom">Власна назва...</option>
                                 </select>
                                 <input type="text" name="specs[0][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
                             </div>
@@ -195,21 +196,21 @@
                         @php $specIndex = 1; @endphp
                     @endforelse
                 </div>
-                
+
                 <button type="button" class="btn-add-spec" onclick="addSpec()">Додати характеристику</button>
             </div>
 
             <!-- ЗОБРАЖЕННЯ -->
             <div class="form-section">
-                <h2>🖼️ Зображення продукту</h2>
-                
+                <h2>Зображення продукту</h2>
+
                 <div class="images-container">
                     <div class="form-group">
                         <label>Фото 1 (головне)</label>
                         <div class="file-input-wrapper">
                             <input type="file" name="images[]" id="image1" accept="image/*">
                             <label for="image1" class="file-input-label">
-                                📁 Вибрати зображення (файлка)
+                                Вибрати зображення
                             </label>
                         </div>
                     </div>
@@ -219,7 +220,7 @@
                         <div class="file-input-wrapper">
                             <input type="file" name="images[]" id="image2" accept="image/*">
                             <label for="image2" class="file-input-label">
-                                📁 Вибрати зображення (файлка)
+                                Вибрати зображення
                             </label>
                         </div>
                     </div>
@@ -229,21 +230,21 @@
                         <div class="file-input-wrapper">
                             <input type="file" name="images[]" id="image3" accept="image/*">
                             <label for="image3" class="file-input-label">
-                                📁 Вибрати зображення (файлка)
+                                Вибрати зображення
                             </label>
                         </div>
                     </div>
-                    
+
                     <span class="help-text">
-                        📌 Підтримуються: JPG, PNG, GIF, WebP. Макс. 5MB на файл.
+                        Підтримуються: JPG, PNG, GIF, WebP. Макс. 5MB на файл.
                     </span>
                 </div>
             </div>
 
             <!-- КНОПКИ -->
             <div class="form-actions">
-                <button type="submit" class="btn-submit">💾 Оновити продукт</button>
-                <a href="{{ route('admin.products.index') }}" class="btn-reset" style="text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">❌ Скасувати</a>
+                <button type="submit" class="btn-submit">Оновити продукт</button>
+                <a href="{{ route('admin.products.index') }}" class="btn-reset" style="text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">Скасувати</a>
             </div>
         </form>
     </div>
@@ -260,24 +261,24 @@
                     <label>Назва характеристики</label>
                     <select name="specs[${specCounter}][name]" class="spec-name-select" onchange="toggleCustomInput(this)">
                         <option value="">-- Оберіть характеристику --</option>
-                        <option value="Device_Class">Device_Class</option>
-                        <option value="CPU">CPU</option>
-                        <option value="CPU_Type">CPU_Type</option>
-                        <option value="RAM">RAM</option>
-                        <option value="RAM_Type">RAM_Type</option>
-                        <option value="GPU">GPU</option>
-                        <option value="GPU_VRAM">GPU_VRAM</option>
-                        <option value="Storage">Storage</option>
-                        <option value="Storage_Type">Storage_Type</option>
-                        <option value="PSU">PSU</option>
-                        <option value="Form_Factor">Form_Factor</option>
-                        <option value="Controller">Controller</option>
-                        <option value="Controller_Type">Controller_Type</option>
-                        <option value="Management">Management</option>
-                        <option value="Management_Type">Management_Type</option>
-                        <option value="OS">OS</option>
-                        <option value="Other">Other</option>
-                        <option value="custom">✏️ Власна назва...</option>
+                        <option value="Device_Class">Клас пристрою</option>
+                        <option value="CPU">Процесор</option>
+                        <option value="CPU_Type">Тип процесора</option>
+                        <option value="RAM">Оперативна пам'ять</option>
+                        <option value="RAM_Type">Тип пам'яті</option>
+                        <option value="GPU">Відеокарта</option>
+                        <option value="GPU_VRAM">Відеопам'ять</option>
+                        <option value="Storage">Накопичувач</option>
+                        <option value="Storage_Type">Тип накопичувача</option>
+                        <option value="PSU">Блок живлення</option>
+                        <option value="Form_Factor">Форм-фактор</option>
+                        <option value="Controller">Контролер</option>
+                        <option value="Controller_Type">Тип контролера</option>
+                        <option value="Management">Управління</option>
+                        <option value="Management_Type">Тип управління</option>
+                        <option value="OS">Операційна система</option>
+                        <option value="Other">Інше</option>
+                        <option value="custom">Власна назва...</option>
                     </select>
                     <input type="text" name="specs[${specCounter}][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
                 </div>
@@ -312,25 +313,23 @@
             }
         }
 
-        // Показ назв файлів при виборі
         document.querySelectorAll('input[type="file"]').forEach(input => {
             input.addEventListener('change', function() {
                 const label = this.nextElementSibling;
                 if (this.files.length > 0) {
-                    label.textContent = '✅ ' + this.files[0].name;
-                    label.style.background = '#d4edda';
-                    label.style.borderColor = '#27ae60';
-                    label.style.color = '#155724';
+                    label.textContent = this.files[0].name;
+                    label.style.background = 'rgba(39, 174, 96, 0.2)';
+                    label.style.borderColor = 'rgba(39, 174, 96, 0.5)';
+                    label.style.color = '#a0ffb0';
                 } else {
-                    label.innerHTML = '📁 Вибрати зображення (файлка)';
-                    label.style.background = 'white';
-                    label.style.borderColor = '#3498db';
-                    label.style.color = '#3498db';
+                    label.textContent = 'Вибрати зображення';
+                    label.style.background = '';
+                    label.style.borderColor = '';
+                    label.style.color = '';
                 }
             });
         });
 
-        // Ініціалізація для першого select
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.spec-name-select').forEach(select => {
                 select.addEventListener('change', function() {

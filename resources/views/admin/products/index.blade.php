@@ -5,6 +5,8 @@
 
 @extends('layouts.app')
 
+@section('body-class', 'dashboard-page')
+
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/admin-products.css') }}">
 @endpush
@@ -13,18 +15,20 @@
 <main class="manage-products-page">
     <nav class="admin-nav">
         <div class="admin-nav-title">
-            🛠️ Панель управління продуктами
-            <span style="font-size: 14px; opacity: 0.8; margin-left: 10px;">
-                ({{ auth()->user()->name }})
-            </span>
+            Панель управління продуктами
         </div>
+        <span style="font-size: 20px; color: #ecf0f1; opacity: 0.9;">
+            Продукти ({{ $products->total() }})
+        </span>
         <div class="admin-nav-links">
-            <a href="{{ route('admin.products.create') }}" class="nav-link">➕ Додати продукт</a>
-            <a href="{{ route('admin.products.index') }}" class="nav-link active">📋 Список продуктів</a>
-            <a href="{{ route('home') }}" class="nav-link">🏠 На головну</a>
+            <a href="{{ route('admin.products.index') }}" class="nav-link active">Продукти</a>
+            <a href="{{ route('admin.products.create') }}" class="nav-link">Додати продукт</a>
+            <a href="{{ route('admin.appeals.index') }}" class="nav-link">Звернення</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">Дашборд</a>
+            <a href="{{ route('home') }}" class="nav-link">На головну</a>
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
-                <button type="submit" class="nav-link" style="background: rgba(231, 76, 60, 0.2); border: none; cursor: pointer;">🚪 Вихід</button>
+                <button type="submit" class="nav-link" style="background: rgba(231, 76, 60, 0.2); border: none; cursor: pointer;">Вихід</button>
             </form>
         </div>
     </nav>

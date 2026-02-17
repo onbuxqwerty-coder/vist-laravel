@@ -1,24 +1,27 @@
 @extends('layouts.app')
 
+@section('body-class', 'create-product-page')
+
 @push('styles')
+<link rel="stylesheet" href="{{ asset('css/admin-products.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin-form.css') }}">
 @endpush
 
 @section('content')
-<main class="add-product-page">
+<main class="manage-products-page">
     <nav class="admin-nav">
         <div class="admin-nav-title">
-            ➕ Додати новий продукт
-            <span style="font-size: 14px; opacity: 0.8; margin-left: 10px;">
-                ({{ auth()->user()->name }})
-            </span>
+            Додати новий продукт
         </div>
         <div class="admin-nav-links">
-            <a href="{{ route('admin.products.index') }}" class="nav-link">📋 Список продуктів</a>
-            <a href="{{ route('home') }}" class="nav-link">🏠 На головну</a>
+            <a href="{{ route('admin.products.index') }}" class="nav-link">Продукти</a>
+            <a href="{{ route('admin.products.create') }}" class="nav-link active">Додати продукт</a>
+            <a href="{{ route('admin.appeals.index') }}" class="nav-link">Звернення</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">Дашборд</a>
+            <a href="{{ route('home') }}" class="nav-link">На головну</a>
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
-                <button type="submit" class="nav-link" style="background: rgba(231, 76, 60, 0.2); border: none; cursor: pointer;">🚪 Вихід</button>
+                <button type="submit" class="nav-link" style="background: rgba(231, 76, 60, 0.2); border: none; cursor: pointer;">Вихід</button>
             </form>
         </div>
     </nav>
@@ -123,23 +126,23 @@
                             <label>Назва характеристики</label>
                             <select name="specs[0][name]" class="spec-name-select" onchange="toggleCustomInput(this)">
                                 <option value="">-- Оберіть характеристику --</option>
-                                <option value="Device_Class">Device_Class</option>
-                                <option value="CPU">CPU</option>
-                                <option value="CPU_Type">CPU_Type</option>
-                                <option value="RAM">RAM</option>
-                                <option value="RAM_Type">RAM_Type</option>
-                                <option value="GPU">GPU</option>
-                                <option value="GPU_VRAM">GPU_VRAM</option>
-                                <option value="Storage">Storage</option>
-                                <option value="Storage_Type">Storage_Type</option>
-                                <option value="PSU">PSU</option>
-                                <option value="Form_Factor">Form_Factor</option>
-                                <option value="Controller">Controller</option>
-                                <option value="Controller_Type">Controller_Type</option>
-                                <option value="Management">Management</option>
-                                <option value="Management_Type">Management_Type</option>
-                                <option value="OS">OS</option>
-                                <option value="Other">Other</option>
+                                <option value="Device_Class">Клас пристрою</option>
+                                <option value="CPU">Процесор</option>
+                                <option value="CPU_Type">Тип процесора</option>
+                                <option value="RAM">Оперативна пам'ять</option>
+                                <option value="RAM_Type">Тип пам'яті</option>
+                                <option value="GPU">Відеокарта</option>
+                                <option value="GPU_VRAM">Відеопам'ять</option>
+                                <option value="Storage">Накопичувач</option>
+                                <option value="Storage_Type">Тип накопичувача</option>
+                                <option value="PSU">Блок живлення</option>
+                                <option value="Form_Factor">Форм-фактор</option>
+                                <option value="Controller">Контролер</option>
+                                <option value="Controller_Type">Тип контролера</option>
+                                <option value="Management">Управління</option>
+                                <option value="Management_Type">Тип управління</option>
+                                <option value="OS">Операційна система</option>
+                                <option value="Other">Інше</option>
                                 <option value="custom">✏️ Власна назва...</option>
                             </select>
                             <input type="text" name="specs[0][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
@@ -216,23 +219,23 @@
                     <label>Назва характеристики</label>
                     <select name="specs[${specCounter}][name]" class="spec-name-select" onchange="toggleCustomInput(this)">
                         <option value="">-- Оберіть характеристику --</option>
-                        <option value="Device_Class">Device_Class</option>
-                        <option value="CPU">CPU</option>
-                        <option value="CPU_Type">CPU_Type</option>
-                        <option value="RAM">RAM</option>
-                        <option value="RAM_Type">RAM_Type</option>
-                        <option value="GPU">GPU</option>
-                        <option value="GPU_VRAM">GPU_VRAM</option>
-                        <option value="Storage">Storage</option>
-                        <option value="Storage_Type">Storage_Type</option>
-                        <option value="PSU">PSU</option>
-                        <option value="Form_Factor">Form_Factor</option>
-                        <option value="Controller">Controller</option>
-                        <option value="Controller_Type">Controller_Type</option>
-                        <option value="Management">Management</option>
-                        <option value="Management_Type">Management_Type</option>
-                        <option value="OS">OS</option>
-                        <option value="Other">Other</option>
+                        <option value="Device_Class">Клас пристрою</option>
+                        <option value="CPU">Процесор</option>
+                        <option value="CPU_Type">Тип процесора</option>
+                        <option value="RAM">Оперативна пам'ять</option>
+                        <option value="RAM_Type">Тип пам'яті</option>
+                        <option value="GPU">Відеокарта</option>
+                        <option value="GPU_VRAM">Відеопам'ять</option>
+                        <option value="Storage">Накопичувач</option>
+                        <option value="Storage_Type">Тип накопичувача</option>
+                        <option value="PSU">Блок живлення</option>
+                        <option value="Form_Factor">Форм-фактор</option>
+                        <option value="Controller">Контролер</option>
+                        <option value="Controller_Type">Тип контролера</option>
+                        <option value="Management">Управління</option>
+                        <option value="Management_Type">Тип управління</option>
+                        <option value="OS">Операційна система</option>
+                        <option value="Other">Інше</option>
                         <option value="custom">✏️ Власна назва...</option>
                     </select>
                     <input type="text" name="specs[${specCounter}][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
