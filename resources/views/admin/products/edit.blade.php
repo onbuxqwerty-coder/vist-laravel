@@ -187,6 +187,26 @@
             <div class="form-section">
                 <h2>Зображення продукту</h2>
 
+                @if($product->images->isNotEmpty())
+                <div class="form-group">
+                    <label>Поточні зображення</label>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+                        @foreach($product->images as $img)
+                        <div style="position:relative; text-align:center;">
+                            <img src="{{ asset($img->image) }}" style="width:120px; height:90px; object-fit:cover; border-radius:8px; border:2px solid {{ $img->is_primary ? '#3498db' : '#ddd' }};">
+                            @if($img->is_primary)
+                                <div style="font-size:11px; color:#3498db; margin-top:4px;">Головне</div>
+                            @endif
+                            <label style="display:block; font-size:11px; color:#e74c3c; cursor:pointer; margin-top:2px;">
+                                <input type="checkbox" name="delete_images[]" value="{{ $img->id }}" style="margin-right:3px;">
+                                Видалити
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
                 <div class="images-container">
                     <div class="form-group">
                         <label>Фото 1 (головне)</label>
