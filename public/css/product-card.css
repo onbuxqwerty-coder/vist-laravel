@@ -70,6 +70,12 @@
     align-self: flex-start;
 }
 
+.vist-card-sku {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 0 16px 6px;
+}
+
 .vist-card-title {
     font-size: 1.25rem;
     font-weight: 700;

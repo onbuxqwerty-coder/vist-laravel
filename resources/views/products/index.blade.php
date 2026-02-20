@@ -11,6 +11,8 @@
 @section('content')
 
 <main class="workstation-page">
+
+
 <div class="page-hero">
     <h1>💻 {{ $typeName }}</h1>
     <p>Професійні рішення для вашого бізнесу</p>
@@ -23,8 +25,15 @@
     </div>
 @else
     <div class="products-grid">
+        @php
+            $hiddenSpecKeys = ['CPU_Type','RAM_Type','GPU_VRAM','Storage_Type','Controller','Controller_Type','Management','Management_Type','Other'];
+        @endphp
         @foreach($products as $product)
-            <div class="product-card" onclick='openPanel({!! htmlspecialchars(json_encode($product), ENT_QUOTES, "UTF-8") !!})'>
+            @php
+                $productData = $product->toArray();
+                $productData['specs'] = $product->specs->whereNotIn('spec_key', $hiddenSpecKeys)->values()->toArray();
+            @endphp
+            <div class="product-card" onclick='openPanel({!! htmlspecialchars(json_encode($productData), ENT_QUOTES, "UTF-8") !!})'>
 			<div class="product-card-image">
 				@php
 					$cardImage = optional(
@@ -43,6 +52,7 @@
 
                 
                 <div class="product-card-content">
+                    <p class="product-card-sku">Код товару: {{ $product->sku }}</p>
                     <h3 class="product-card-title">{{ $product->title }}</h3>
                     
                     @if($product->subtitle)
@@ -58,6 +68,27 @@
                         </button>
                     </div>
                 </div>
+
+                @php
+                    $hoverSpecs = [
+                        'Form_Factor' => 'Форм-фактор',
+                        'CPU'         => 'Процесор',
+                        'GPU'         => 'Дискретна графіка',
+                        'RAM'         => 'Оперативна пам\'ять',
+                        'Storage'     => 'Об\'єм SSD',
+                    ];
+                    $specsIdx = $product->specs->keyBy('spec_key');
+                @endphp
+                <div class="card-specs-popup">
+                    @foreach($hoverSpecs as $key => $label)
+                        @if($specsIdx->has($key))
+                            <div class="popup-spec-row">
+                                <span class="popup-spec-label">{{ $label }}:</span>
+                                <span class="popup-spec-value">{{ $specsIdx[$key]->spec_value }}</span>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         @endforeach
     </div>
@@ -66,6 +97,7 @@
 <div class="slide-panel-overlay" onclick="closePanel()"></div>
 <div class="slide-panel" id="slidePanel">
     <div class="panel-header">
+        <p id="panelSku" style="font-size:12px;color:#999;margin:0 0 2px;"></p>
         <h2 id="panelTitle"></h2>
         <button class="btn-close-panel" onclick="closePanel()">×</button>
     </div>
@@ -166,6 +198,7 @@ let currentProduct = null;
 function openPanel(product) {
     currentProduct = product;
     document.getElementById('panelTitle').textContent = product.title;
+    document.getElementById('panelSku').textContent = product.sku ? 'Код товару: ' + product.sku : '';
     document.getElementById('panelPrice').textContent = formatPrice(product.price) + ' ' + product.currency;
     document.getElementById('panelDescription').textContent = product.description || product.subtitle || 'Опис продукту';
     

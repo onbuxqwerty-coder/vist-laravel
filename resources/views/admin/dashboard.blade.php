@@ -30,6 +30,7 @@ body { background-image: url('/img/dashboard-bg.png');}
 .admin-card .card-count { font-size: 36px; font-weight: bold; color: rgba(255, 255, 255, 0.9); flex-shrink: 0; }
 .section-title { font-size: 18px; color: rgba(255, 255, 255, 0.7); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 </style>
+
 
 <div class="dashboard-container">
     <div class="dashboard-header">

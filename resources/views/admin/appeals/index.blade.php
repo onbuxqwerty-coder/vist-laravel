@@ -57,6 +57,7 @@ body { background: url('/img/dashboard-bg.png') no-repeat center center fixed; b
             </form>
         </div>
     </nav>
+
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

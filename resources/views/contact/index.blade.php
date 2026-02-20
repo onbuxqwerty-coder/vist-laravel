@@ -9,6 +9,7 @@
 @section('content')
 
 <main class="vist-contact-page">
+
 
     <div class="contact">
         {{-- Ліва панель: форма --}}

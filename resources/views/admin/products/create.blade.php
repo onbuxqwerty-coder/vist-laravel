@@ -25,6 +25,7 @@
             </form>
         </div>
     </nav>
+
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -128,21 +129,12 @@
                                 <option value="">-- Оберіть характеристику --</option>
                                 <option value="Device_Class">Клас пристрою</option>
                                 <option value="CPU">Процесор</option>
-                                <option value="CPU_Type">Тип процесора</option>
                                 <option value="RAM">Оперативна пам'ять</option>
-                                <option value="RAM_Type">Тип пам'яті</option>
                                 <option value="GPU">Відеокарта</option>
-                                <option value="GPU_VRAM">Відеопам'ять</option>
                                 <option value="Storage">Накопичувач</option>
-                                <option value="Storage_Type">Тип накопичувача</option>
                                 <option value="PSU">Блок живлення</option>
                                 <option value="Form_Factor">Форм-фактор</option>
-                                <option value="Controller">Контролер</option>
-                                <option value="Controller_Type">Тип контролера</option>
-                                <option value="Management">Управління</option>
-                                <option value="Management_Type">Тип управління</option>
                                 <option value="OS">Операційна система</option>
-                                <option value="Other">Інше</option>
                                 <option value="custom">✏️ Власна назва...</option>
                             </select>
                             <input type="text" name="specs[0][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
@@ -221,21 +213,12 @@
                         <option value="">-- Оберіть характеристику --</option>
                         <option value="Device_Class">Клас пристрою</option>
                         <option value="CPU">Процесор</option>
-                        <option value="CPU_Type">Тип процесора</option>
                         <option value="RAM">Оперативна пам'ять</option>
-                        <option value="RAM_Type">Тип пам'яті</option>
                         <option value="GPU">Відеокарта</option>
-                        <option value="GPU_VRAM">Відеопам'ять</option>
                         <option value="Storage">Накопичувач</option>
-                        <option value="Storage_Type">Тип накопичувача</option>
                         <option value="PSU">Блок живлення</option>
                         <option value="Form_Factor">Форм-фактор</option>
-                        <option value="Controller">Контролер</option>
-                        <option value="Controller_Type">Тип контролера</option>
-                        <option value="Management">Управління</option>
-                        <option value="Management_Type">Тип управління</option>
                         <option value="OS">Операційна система</option>
-                        <option value="Other">Інше</option>
                         <option value="custom">✏️ Власна назва...</option>
                     </select>
                     <input type="text" name="specs[${specCounter}][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">

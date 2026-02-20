@@ -42,6 +42,7 @@
             </form>
         </div>
     </nav>
+
 
     <div class="form-card">
         <h1>Редагувати звернення</h1>

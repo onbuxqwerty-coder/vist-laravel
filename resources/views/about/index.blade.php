@@ -6,7 +6,8 @@
 
 @section('content')
 
-<main>
+<main>
+
     <div class="about-us">
         <div class="about-img">
             <img src="{{ asset('img/about-us.png') }}" alt="About Us">

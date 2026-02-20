@@ -11,6 +11,7 @@ class Product extends Model
         'title',
         'subtitle',
         'slug',
+        'sku',
         'image',
         'description',
         'price',
@@ -18,6 +19,13 @@ class Product extends Model
         'status',
         'is_active',
     ];
+
+    protected static function booted(): void
+    {
+        static::created(function (Product $product) {
+            $product->updateQuietly(['sku' => '0000' . $product->id]);
+        });
+    }
 
     protected $casts = [
         'price' => 'decimal:2',

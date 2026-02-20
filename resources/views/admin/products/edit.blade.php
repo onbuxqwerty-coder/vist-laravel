@@ -25,6 +25,7 @@
             </form>
         </div>
     </nav>
+
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -134,21 +135,12 @@
                                     <option value="">-- Оберіть характеристику --</option>
                                     <option value="Device_Class" {{ $spec->spec_key == 'Device_Class' ? 'selected' : '' }}>Клас пристрою</option>
                                     <option value="CPU" {{ $spec->spec_key == 'CPU' ? 'selected' : '' }}>Процесор</option>
-                                    <option value="CPU_Type" {{ $spec->spec_key == 'CPU_Type' ? 'selected' : '' }}>Тип процесора</option>
                                     <option value="RAM" {{ $spec->spec_key == 'RAM' ? 'selected' : '' }}>Оперативна пам'ять</option>
-                                    <option value="RAM_Type" {{ $spec->spec_key == 'RAM_Type' ? 'selected' : '' }}>Тип пам'яті</option>
                                     <option value="GPU" {{ $spec->spec_key == 'GPU' ? 'selected' : '' }}>Відеокарта</option>
-                                    <option value="GPU_VRAM" {{ $spec->spec_key == 'GPU_VRAM' ? 'selected' : '' }}>Відеопам'ять</option>
                                     <option value="Storage" {{ $spec->spec_key == 'Storage' ? 'selected' : '' }}>Накопичувач</option>
-                                    <option value="Storage_Type" {{ $spec->spec_key == 'Storage_Type' ? 'selected' : '' }}>Тип накопичувача</option>
                                     <option value="PSU" {{ $spec->spec_key == 'PSU' ? 'selected' : '' }}>Блок живлення</option>
                                     <option value="Form_Factor" {{ $spec->spec_key == 'Form_Factor' ? 'selected' : '' }}>Форм-фактор</option>
-                                    <option value="Controller" {{ $spec->spec_key == 'Controller' ? 'selected' : '' }}>Контролер</option>
-                                    <option value="Controller_Type" {{ $spec->spec_key == 'Controller_Type' ? 'selected' : '' }}>Тип контролера</option>
-                                    <option value="Management" {{ $spec->spec_key == 'Management' ? 'selected' : '' }}>Управління</option>
-                                    <option value="Management_Type" {{ $spec->spec_key == 'Management_Type' ? 'selected' : '' }}>Тип управління</option>
                                     <option value="OS" {{ $spec->spec_key == 'OS' ? 'selected' : '' }}>Операційна система</option>
-                                    <option value="Other" {{ $spec->spec_key == 'Other' ? 'selected' : '' }}>Інше</option>
                                     <option value="custom">Власна назва...</option>
                                 </select>
                                 <input type="text" name="specs[{{ $specIndex }}][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
@@ -168,21 +160,12 @@
                                     <option value="">-- Оберіть характеристику --</option>
                                     <option value="Device_Class">Клас пристрою</option>
                                     <option value="CPU">Процесор</option>
-                                    <option value="CPU_Type">Тип процесора</option>
                                     <option value="RAM">Оперативна пам'ять</option>
-                                    <option value="RAM_Type">Тип пам'яті</option>
                                     <option value="GPU">Відеокарта</option>
-                                    <option value="GPU_VRAM">Відеопам'ять</option>
                                     <option value="Storage">Накопичувач</option>
-                                    <option value="Storage_Type">Тип накопичувача</option>
                                     <option value="PSU">Блок живлення</option>
                                     <option value="Form_Factor">Форм-фактор</option>
-                                    <option value="Controller">Контролер</option>
-                                    <option value="Controller_Type">Тип контролера</option>
-                                    <option value="Management">Управління</option>
-                                    <option value="Management_Type">Тип управління</option>
                                     <option value="OS">Операційна система</option>
-                                    <option value="Other">Інше</option>
                                     <option value="custom">Власна назва...</option>
                                 </select>
                                 <input type="text" name="specs[0][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">
@@ -263,21 +246,12 @@
                         <option value="">-- Оберіть характеристику --</option>
                         <option value="Device_Class">Клас пристрою</option>
                         <option value="CPU">Процесор</option>
-                        <option value="CPU_Type">Тип процесора</option>
                         <option value="RAM">Оперативна пам'ять</option>
-                        <option value="RAM_Type">Тип пам'яті</option>
                         <option value="GPU">Відеокарта</option>
-                        <option value="GPU_VRAM">Відеопам'ять</option>
                         <option value="Storage">Накопичувач</option>
-                        <option value="Storage_Type">Тип накопичувача</option>
                         <option value="PSU">Блок живлення</option>
                         <option value="Form_Factor">Форм-фактор</option>
-                        <option value="Controller">Контролер</option>
-                        <option value="Controller_Type">Тип контролера</option>
-                        <option value="Management">Управління</option>
-                        <option value="Management_Type">Тип управління</option>
                         <option value="OS">Операційна система</option>
-                        <option value="Other">Інше</option>
                         <option value="custom">Власна назва...</option>
                     </select>
                     <input type="text" name="specs[${specCounter}][name_custom]" placeholder="Введіть свою назву" style="margin-top: 5px; display: none;">

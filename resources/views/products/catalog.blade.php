@@ -8,6 +8,8 @@
 
 @section('content')
 <main class="product-catalog-page">
+
+
     <div class="page-hero">
         <h1>{{ $config['title'] }}</h1>
         <p>{{ $config['subtitle'] }}</p>
@@ -36,6 +38,7 @@
                     </div>
                     
                     <div class="product-card-content">
+                        <p class="product-card-sku">Код товару: {{ $product->sku }}</p>
                         <h3 class="product-card-title">{{ $product->title }}</h3>
                         
                         @if($product->specs && $product->specs->isNotEmpty())
@@ -98,6 +101,10 @@
             <div id="panelSpecs" class="specs-grid"></div>
             
             <div class="panel-info">
+                <div class="info-row">
+                    <span class="info-label">Код товару:</span>
+                    <span class="info-value" id="panelSku"></span>
+                </div>
                 <div class="info-row">
                     <span class="info-label">Категорія:</span>
                     <span class="info-value" id="panelCategory"></span>
@@ -166,6 +173,9 @@
                 });
             }
             
+            // SKU
+            document.getElementById('panelSku').innerText = product.sku || '—';
+
             // Категорія
             const categoryNames = {
                 'workstation': 'Робоча станція',

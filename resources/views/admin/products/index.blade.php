@@ -32,6 +32,7 @@
             </form>
         </div>
     </nav>
+
 
     @if(session('success'))
         <div class="alert alert-success">

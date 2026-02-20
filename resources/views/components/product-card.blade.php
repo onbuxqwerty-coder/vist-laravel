@@ -76,6 +76,10 @@
         {{ $typeLabel }}
     </div>
 
+    @if($product->sku)
+        <p class="vist-card-sku">Код товару: {{ $product->sku }}</p>
+    @endif
+
     <h3 class="vist-card-title">
         {{ $product->title }}
     </h3>

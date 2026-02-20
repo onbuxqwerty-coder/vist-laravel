@@ -70,7 +70,13 @@ class ProductController extends Controller
 
         // Автогенерація slug якщо не вказано
         if (empty($validated['slug'])) {
-            $validated['slug'] = \Illuminate\Support\Str::slug($validated['title']);
+            $base = \Illuminate\Support\Str::slug($validated['title']);
+            $slug = $base;
+            $i = 2;
+            while (Product::where('slug', $slug)->exists()) {
+                $slug = $base . '-' . $i++;
+            }
+            $validated['slug'] = $slug;
         }
 
         // Встановлюємо значення за замовчуванням
@@ -152,7 +158,13 @@ class ProductController extends Controller
 
         // Автогенерація slug якщо не вказано
         if (empty($validated['slug'])) {
-            $validated['slug'] = \Illuminate\Support\Str::slug($validated['title']);
+            $base = \Illuminate\Support\Str::slug($validated['title']);
+            $slug = $base;
+            $i = 2;
+            while (Product::where('slug', $slug)->where('id', '!=', $product->id)->exists()) {
+                $slug = $base . '-' . $i++;
+            }
+            $validated['slug'] = $slug;
         }
 
         // Встановлюємо значення
