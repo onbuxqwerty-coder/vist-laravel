@@ -65,8 +65,7 @@ body.product-catalog-page {
     right: 0;
     background: #fff;
     border: 2px solid #3498db;
-    border-top: none;
-    border-radius: 0 0 16px 16px;
+    border-radius: 16px;
     padding: 14px 20px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     transform: translateY(-8px);
