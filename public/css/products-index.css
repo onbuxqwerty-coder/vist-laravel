@@ -42,6 +42,7 @@ body.product-catalog-page {
 .product-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    z-index: 10;
 }
 
 .product-card-image {
@@ -59,18 +60,19 @@ body.product-catalog-page {
 
 .card-specs-popup {
     position: absolute;
-    bottom: 0;
+    top: 100%;
     left: 0;
     right: 0;
     background: #fff;
-    border-top: 2px solid #3498db;
+    border: 2px solid #3498db;
+    border-top: none;
     border-radius: 0 0 16px 16px;
     padding: 14px 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    transform: translateY(100%);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    transform: translateY(-8px);
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 20;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    z-index: 100;
     pointer-events: none;
 }
 
