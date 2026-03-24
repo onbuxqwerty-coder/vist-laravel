@@ -67,7 +67,7 @@
         </nav>
 
         <div class="social_networks">
-            <a href="https://facebook.com/vist" target="_blank" rel="noopener" class="facebook_logo">
+            <a href="https://facebook.com/vist.net.ua" target="_blank" rel="noopener" class="facebook_logo">
                 <img width="40" height="40" src="{{ asset('img/logo/media/facebook_logo_120x120.png') }}" alt="Facebook">
             </a>
             <a href="https://instagram.com/vist" target="_blank" rel="noopener" class="instagram_logo">
