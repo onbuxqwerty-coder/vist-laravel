@@ -1,0 +1,94 @@
+.vist-service-page {
+    padding-bottom: 60px;
+}
+
+.page-hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    color: #fff;
+}
+
+.page-hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.page-hero p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.service-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.service-text-block {
+    flex: 1;
+    color: #fff;
+}
+
+.service-text-block h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.service-text-block h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    color: #fff;
+}
+
+.service-text-block h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: #fff;
+}
+
+.service-text-block p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.service-text-block ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.service-text-block ul li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.service-cta-text {
+    margin-top: 24px;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.vist-service-page .contact {
+    width: 420px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .service-content {
+        flex-direction: column;
+    }
+    .vist-service-page .contact {
+        width: 100%;
+    }
+}

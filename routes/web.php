@@ -23,6 +23,9 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 // Підтримка
 Route::view('/support', 'support.index')->name('support.index');
 
+// Сервісний центр
+Route::view('/service', 'service.index')->name('service.index');
+
 // Каталоги продуктів
 Route::get('/workstations', [ProductCatalogController::class, 'index'])
     ->defaults('type', 'workstation')

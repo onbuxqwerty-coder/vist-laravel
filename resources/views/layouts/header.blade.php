@@ -30,6 +30,7 @@
                     <a href="{{ route('industrial.index') }}">Промислові ПК</a>
                     <a href="{{ route('ups.index') }}">ДБЖ</a>
                     <a href="{{ route('support.index') }}">Підтримка</a>
+                    <a href="{{ route('service.index') }}">Сервісний центр</a>
                     <a href="{{ route('about') }}">Про компанію</a>
                     <a href="{{ route('contact') }}">Контакти</a>
                 </nav>
@@ -49,6 +50,7 @@
                 <a href="{{ route('industrial.index') }}">Промислові ПК</a>
                 <a href="{{ route('ups.index') }}">ДБЖ</a>
                 <a href="{{ route('support.index') }}">Підтримка</a>
+                <a href="{{ route('service.index') }}">Сервісний центр</a>
                 <a href="{{ route('about') }}">Про компанію</a>
                 <a href="{{ route('contact') }}">Контакти</a>
             </nav>
