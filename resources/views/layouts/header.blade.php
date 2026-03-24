@@ -72,21 +72,32 @@
         }
 
         // Стискання хедера при прокрутці
+        let lastScrollY = 0;
+
         function onScroll() {
             if (!header) return;
 
             const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-            // тільки на десктопі стискаємо
             if (window.innerWidth > 720) {
+                // Десктоп: стискаємо
                 if (scrollY > 80) {
                     header.classList.add('shrink');
                 } else {
                     header.classList.remove('shrink');
                 }
+                header.classList.remove('scroll-hidden');
             } else {
+                // Мобільний: ховаємо при скролі вниз, показуємо при скролі вгору
                 header.classList.remove('shrink');
+                if (scrollY > lastScrollY && scrollY > 60) {
+                    header.classList.add('scroll-hidden');
+                } else {
+                    header.classList.remove('scroll-hidden');
+                }
             }
+
+            lastScrollY = scrollY;
         }
 
         window.addEventListener('scroll', onScroll);

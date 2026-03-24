@@ -31,7 +31,11 @@ header.site-header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+header.site-header.scroll-hidden {
+    transform: translateY(-100%);
 }
 
 /* тінь у стислому стані */
@@ -302,7 +306,7 @@ nav.main-menu a:hover::after {
 @media (max-width: 720px) {
 
     body {
-        padding-top: 100px; /* хедер на мобільному менший */
+        padding-top: 70px;
     }
 
     .site-header .header-grid {
