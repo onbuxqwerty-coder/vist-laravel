@@ -26,6 +26,22 @@ Route::view('/support', 'support.index')->name('support.index');
 // Сервісний центр
 Route::view('/service', 'service.index')->name('service.index');
 
+// Sitemap
+Route::get('/sitemap.xml', function () {
+    $sitemap = \Spatie\Sitemap\Sitemap::create()
+        ->add(\Spatie\Sitemap\Tags\Url::create('/')->setPriority(1.0)->setChangeFrequency('weekly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/workstations')->setPriority(0.9)->setChangeFrequency('weekly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/servers')->setPriority(0.9)->setChangeFrequency('weekly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/industrial')->setPriority(0.9)->setChangeFrequency('weekly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/ups')->setPriority(0.9)->setChangeFrequency('weekly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/service')->setPriority(0.8)->setChangeFrequency('monthly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/support')->setPriority(0.7)->setChangeFrequency('monthly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/about')->setPriority(0.6)->setChangeFrequency('monthly'))
+        ->add(\Spatie\Sitemap\Tags\Url::create('/contact')->setPriority(0.6)->setChangeFrequency('monthly'));
+
+    return response($sitemap->render(), 200)->header('Content-Type', 'application/xml');
+})->name('sitemap');
+
 // Каталоги продуктів
 Route::get('/workstations', [ProductCatalogController::class, 'index'])
     ->defaults('type', 'workstation')

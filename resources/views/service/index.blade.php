@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Сервісний центр | VIST')
+@section('schema')
+    <x-seo-schema type="service" />
+@endsection
+
+@php
+    \Artesaos\SEOTools\Facades\SEOMeta::setTitle('Сервісний центр | ТОВ фірма "ВІСТ"');
+    \Artesaos\SEOTools\Facades\SEOMeta::setDescription('Ремонт ноутбуків, ПК, ДБЖ та принтерів у Дніпрі. Сервісний центр ТОВ фірма "ВІСТ" — діагностика, гарантія на роботи, робота з юридичними особами.');
+    \Artesaos\SEOTools\Facades\SEOMeta::setKeywords(['ремонт ноутбуків Дніпро', 'сервіс ДБЖ', 'ремонт принтерів', 'сервісний центр VIST']);
+@endphp
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">

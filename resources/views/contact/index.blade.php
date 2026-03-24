@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('title', 'Контакти | VIST')
+@php
+    \Artesaos\SEOTools\Facades\SEOMeta::setTitle('Контакти | ТОВ фірма "ВІСТ"');
+    \Artesaos\SEOTools\Facades\SEOMeta::setDescription('Контакти ТОВ фірма "ВІСТ": м. Дніпро, вул. Князя Ярослава Мудрого 27. Тел. +380563700707. Напишіть нам або заповніть форму зворотного зв\'язку.');
+@endphp
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
@@ -77,7 +81,8 @@
             Тел.: +380563700707<br>
             &emsp;&emsp;&ensp;+380634370707<br>
             Telegram, Viber, WhatsApp:<br>
-            &emsp;&emsp;&ensp;+380634370707
+            &emsp;&emsp;&ensp;+380634370707<br>
+			Сервісний центр:<br> Тел. +380952352312
             </p>
         </div>
     </div>

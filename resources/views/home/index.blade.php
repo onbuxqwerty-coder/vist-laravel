@@ -2,14 +2,17 @@
 
 @section('title', 'VIST — Компʼютери для бізнесу та життя')
 
+@section('schema')
+    <x-seo-schema type="organization" />
+@endsection
+
 @section('content')
 
 <!----------------------------------------------- HERO 1 ----------------------------------------------->
 
 <div class="background-video-container">
-    <video autoplay loop muted id="myVideo">
+    <video autoplay loop muted playsinline preload="none" id="myVideo" poster="{{ asset('img/bg-product.png') }}">
         <source src="{{ asset('img/video/vist__cinematic.mp4') }}" type="video/mp4">
-        Ваш браузер не поддерживает тег video.
     </video>
     <div class="content">
         <h1>Підвищена Продуктивність</h1>

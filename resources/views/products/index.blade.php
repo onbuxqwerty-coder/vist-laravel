@@ -8,6 +8,14 @@
 <link rel="stylesheet" href="{{ asset('css/products-index.css') }}">
 @endpush
 
+@section('schema')
+    @if($type === 'server')
+        <x-seo-schema type="servers" />
+    @elseif($type === 'ipc')
+        <x-seo-schema type="ipc" />
+    @endif
+@endsection
+
 @section('content')
 
 <main class="workstation-page">
