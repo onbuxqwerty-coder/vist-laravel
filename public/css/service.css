@@ -2,6 +2,11 @@
     padding-bottom: 60px;
 }
 
+body:has(.vist-service-page) {
+    background: url('/img/bg-product.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
 .page-hero {
     text-align: center;
     padding: 60px 20px 40px;
