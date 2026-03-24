@@ -23,6 +23,10 @@ body.product-catalog-page {
     font-weight: 700;
 }
 
+.page-hero p {
+    color: #fff;
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
