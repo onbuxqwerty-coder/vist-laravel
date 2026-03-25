@@ -1,1 +1,23 @@
+name: Deploy to Hostinger
 
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 45.84.204.46
+          port: 65002
+          username: u746005963
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            cd /home/u746005963/domains/vist.net.ua/laravel-projects/vist-laravel
+            git pull origin main
+            php artisan migrate --force
+            php artisan optimize:clear
