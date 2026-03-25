@@ -19,12 +19,9 @@
         <p>Професійно розроблені робочі станції та сервери для найвимогливіших застосувань</p>
 
         <div class="content-button">
-            <button class="specialist-button">
+            <a href="{{ route('contact') }}#contact-form" class="specialist-button">
                 Поговорити з Спеціалістом
-            </button>
-            <button class="specialist-button">
-                Замовити дзвінок
-            </button>
+            </a>
         </div>
     </div>
 </div>
@@ -213,12 +210,9 @@
         </p>
 
         <div class="content-button">
-            <button class="specialist-button">
+            <a href="{{ route('contact') }}#contact-form" class="specialist-button">
                 Проконсультуватися зі спеціалістом
-            </button>
-            <button class="specialist-button">
-                Замовити дзвінок
-            </button>
+            </a>
         </div>
     </div>
 </section>

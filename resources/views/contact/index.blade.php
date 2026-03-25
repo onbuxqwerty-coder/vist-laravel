@@ -17,7 +17,7 @@
 
     <div class="contact">
         {{-- Ліва панель: форма --}}
-        <div class="glass-form">
+        <div class="glass-form" id="contact-form">
             <h1>Форма зв'язку</h1>
 
             @if(session('success'))
