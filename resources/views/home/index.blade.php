@@ -20,7 +20,7 @@
 
         <div class="content-button">
             <a href="{{ route('contact') }}#contact-form" class="specialist-button">
-                Поговорити з Спеціалістом
+                Задати питання Спеціалісту
             </a>
         </div>
     </div>
