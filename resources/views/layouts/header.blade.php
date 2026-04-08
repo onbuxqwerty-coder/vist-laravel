@@ -5,7 +5,7 @@
         <!-- ЛОГО -->
         <div class="logo-block">
             <a href="{{ route('home') }}">
-                <img src="{{ asset('img/logo/vist_logo_w.webp') }}" alt="Vist Group" width="200" height="200">
+                <img src="{{ asset('img/logo/vist_logo_w.webp') }}" alt="Vist Group" width="100" height="100">
             </a>
         </div>
 

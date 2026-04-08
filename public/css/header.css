@@ -86,6 +86,7 @@ header.site-header.shrink .header-grid {
 
 .logo-block img {
     width: 100px;
+    height: auto;
     transition: width 0.3s ease;
 }
 
