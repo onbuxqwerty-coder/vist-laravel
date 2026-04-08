@@ -22,25 +22,28 @@ a {
    ========================= */
 
 header.site-header {
-    background: #00007c;
     color: #f8f8fb;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transform: translateY(0);
+    transition: transform 0.35s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-header.site-header.scroll-hidden {
-    transform: translateY(-100%);
-}
-
-/* тінь у стислому стані */
-header.site-header.shrink {
+/* Прокручено — є фон */
+header.site-header.is-solid {
+    background: #00007c;
+    border-bottom-color: rgba(255,255,255,0.08);
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Схований (скрол вниз) */
+header.site-header.is-hidden {
+    transform: translateY(-100%);
 }
 
 .container {
@@ -67,13 +70,6 @@ header.site-header.shrink {
     padding: 6px 16px 0;
 }
 
-/* Стиснутий стан: одна строка "logo menu phone" */
-header.site-header.shrink .header-grid {
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto;
-    grid-template-areas: "logo menu phone";
-    padding-top: 2px;
-}
 
 /* ЛОГО */
 
@@ -90,10 +86,6 @@ header.site-header.shrink .header-grid {
     transition: width 0.3s ease;
 }
 
-/* логотип менший у стислому стані */
-header.site-header.shrink .logo-block img {
-    width: 50px;
-}
 
 /* залишаємо запасні стилі, якщо використовуватимеш текст біля лого */
 
@@ -125,9 +117,6 @@ header.site-header.shrink .logo-block img {
 .logo-subtitle {
     font-size: 16px;
     opacity: .7;
-}
-header.site-header.shrink nav.main-menu {
-    margin-left: 60px;   /* ← змінюй на свій смак */
 }
 
 
@@ -179,11 +168,6 @@ header.site-header.shrink nav.main-menu {
     width: 100%;
 }
 
-/* у стислому стані border-top не потрібен – все в один ряд */
-header.site-header.shrink .header-bottom {
-    border-top: none;
-}
-
 /* ряд з меню та бургером */
 
 .nav-row {
@@ -194,14 +178,6 @@ header.site-header.shrink .header-bottom {
     padding: 6px 0 0;
     gap: 16px;
     transition: padding 0.3s ease, gap 0.3s ease;
-}
-
-/* менший відступ і вирівнювання у стислому стані */
-header.site-header.shrink .nav-row {
-    padding: 4px 0 2px;
-    flex-direction: row;          /* меню зліва, бургер/інше справа */
-    justify-content: flex-start;
-    gap: 24px;
 }
 
 /* Десктопне меню */

@@ -64,44 +64,37 @@
         const header = document.querySelector('.site-header');
         const toggle = document.querySelector('.menu-toggle');
 
-        // Відкриття/закриття мобільного меню
         if (toggle && header) {
             toggle.addEventListener('click', function () {
                 header.classList.toggle('mobile-menu-open');
             });
         }
 
-        // Стискання хедера при прокрутці
-        let lastScrollY = 0;
+        let lastScrollY = window.pageYOffset;
+        const THRESHOLD = 80;
 
         function onScroll() {
             if (!header) return;
+            const scrollY = window.pageYOffset;
 
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (window.innerWidth > 720) {
-                // Десктоп: стискаємо
-                if (scrollY > 80) {
-                    header.classList.add('shrink');
-                } else {
-                    header.classList.remove('shrink');
-                }
-                header.classList.remove('scroll-hidden');
+            // Фон: з'являється після THRESHOLD
+            if (scrollY > THRESHOLD) {
+                header.classList.add('is-solid');
             } else {
-                // Мобільний: ховаємо при скролі вниз, показуємо при скролі вгору
-                header.classList.remove('shrink');
-                if (scrollY > lastScrollY && scrollY > 60) {
-                    header.classList.add('scroll-hidden');
-                } else {
-                    header.classList.remove('scroll-hidden');
-                }
+                header.classList.remove('is-solid');
+            }
+
+            // Sticky reveal: ховаємо при скролі вниз, показуємо при скролі вгору
+            if (scrollY > lastScrollY && scrollY > THRESHOLD) {
+                header.classList.add('is-hidden');
+            } else {
+                header.classList.remove('is-hidden');
             }
 
             lastScrollY = scrollY;
         }
 
-        window.addEventListener('scroll', onScroll);
-        window.addEventListener('resize', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     });
 </script>
