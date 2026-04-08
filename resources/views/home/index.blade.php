@@ -11,7 +11,7 @@
 <!----------------------------------------------- HERO 1 ----------------------------------------------->
 
 <div class="background-video-container">
-    <video autoplay loop muted playsinline preload="none" id="myVideo" poster="{{ asset('img/bg-product.png') }}">
+    <video autoplay loop muted playsinline preload="none" id="myVideo" poster="{{ asset('img/bg-product.webp') }}">
         <source src="{{ asset('img/video/vist__cinematic.mp4') }}" type="video/mp4">
     </video>
     <div class="content">
@@ -60,7 +60,7 @@
 
         <!-- Права частина 1/3 з картинкою -->
         <div class="vist-image-column">
-            <img src="{{ asset('img/waiting.jpg') }}" alt="Співробітник, що чекає через повільний комп'ютер">
+            <img src="{{ asset('img/waiting.webp') }}" alt="Співробітник, що чекає через повільний комп'ютер" loading="lazy" width="600" height="400">
         </div>
     </div>
 </section>
@@ -100,7 +100,7 @@
 
         <!-- ПОТІМ зображення (через row-reverse буде зліва) -->
         <div class="vist-image-column vist-image-column--reversed">
-            <img src="{{ asset('img/success.jpg') }}" alt="Успішна команда з продуктивними робочими станціями">
+            <img src="{{ asset('img/success.webp') }}" alt="Успішна команда з продуктивними робочими станціями" loading="lazy" width="600" height="400">
         </div>
 
     </div>
@@ -226,42 +226,42 @@
 
 <div class="cards-grid">
     <div class="card">
-        <img src="{{ asset('img/icon/cad.jpg') }}" alt="CAD/CAM/CAE" class="icon">
+        <img src="{{ asset('img/icon/cad.webp') }}" alt="CAD/CAM/CAE" class="icon" loading="lazy" width="80" height="80">
         <h3>Інженерні та виробничі компанії</h3>
         <h3>🛠 CAD / CAM / CAE, симуляції, моделювання</h3>
         <p>Оптимізовані під SolidWorks, Siemens NX, 🏗 BIM-проекти і складні сцени AutoCAD, Fusion 360, ANSYS. Скорочують час рендеру та обчислень у 2–5 разів.</p>
     </div>
 
     <div class="card">
-        <img src="{{ asset('img/icon/arch.jpg') }}" alt="CAD/CAM/CAE" class="icon">
+        <img src="{{ asset('img/icon/arch.webp') }}" alt="Архітектура та будівництво" class="icon" loading="lazy" width="80" height="80">
         <h3>Архітектурні та будівельні бюро (AEC)</h3>
         <h3>🏗 BIM-проекти і складні сцени</h3>
         <p>Підтримка Revit, ArchiCAD, 3ds Max, Twinmotion, Lumion. Стабільна робота з великими файлами та проєктами.</p>
     </div>
 
     <div class="card">
-        <img src="{{ asset('img/icon/media.jpg') }}" alt="CAD/CAM/CAE" class="icon">
+        <img src="{{ asset('img/icon/media.webp') }}" alt="Медіа та відеопродакшн" class="icon" loading="lazy" width="80" height="80">
         <h3>Медіа-студії та відеопродакшн</h3>
         <h3>🎬 Монтаж, VFX, колор-грейдинг, 3D-анимація</h3>
         <p>DaVinci Resolve, Adobe Suite, Blender, Maya, Houdini. Прискорення рендера кадрів та плавна робота з 4K/8K.</p>
     </div>
 
     <div class="card">
-        <img src="{{ asset('img/icon/data.jpg') }}" alt="CAD/CAM/CAE" class="icon">
+        <img src="{{ asset('img/icon/data.webp') }}" alt="AI та Data Science" class="icon" loading="lazy" width="80" height="80">
         <h3>AI-команди та Data Science</h3>
         <h3>🤖 Machine Learning, Python-ML, моделі LLM, GPU-кластеризація</h3>
         <p>Системи з RTX / A-серією NVIDIA, оптимізовані під TensorFlow, PyTorch. Збільшення швидкості тренування моделей у кілька разів.</p>
     </div>
 
     <div class="card">
-        <img src="{{ asset('img/icon/hpc.jpg') }}" alt="CAD/CAM/CAE" class="icon">
+        <img src="{{ asset('img/icon/hpc.webp') }}" alt="HPC обчислення" class="icon" loading="lazy" width="80" height="80">
         <h3>Компанії з великими обчислювальними навантаженнями (HPC)</h3>
         <h3>⚙ Наука, фінансові моделі, сімуляції, багатопотокові задачі</h3>
         <p>Серверні рішення та робочі станції з 64–128 ядрами, ECC-пам'яттю.</p>
     </div>
 
     <div class="card">
-        <img src="{{ asset('img/icon/it6.jpg') }}" alt="CAD/CAM/CAE" class="icon">
+        <img src="{{ asset('img/icon/it6.webp') }}" alt="IT-відділи та інтегратори" class="icon" loading="lazy" width="80" height="80">
         <h3>IT-відділи, інтегратори та реселери</h3>
         <h3>💼 Корпоративна інфраструктура, віртуалізація, розгортання</h3>
         <p>Налаштування корпоративних робочих станцій, серверів та кластерів. Можливі партнерські програми та інтеграції.</p>

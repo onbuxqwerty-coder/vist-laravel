@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="lBnexgbUL_GUQ1aphvQ22KoKDFROXVN6c7jXKr4Kg9E">
+    @if(Route::is('home'))
+    <link rel="preload" as="image" href="{{ asset('img/bg-product.webp') }}" fetchpriority="high">
+    @endif
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     <link rel="icon" href="{{ asset('favicon.ico') }}">
