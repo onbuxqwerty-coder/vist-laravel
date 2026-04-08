@@ -438,6 +438,19 @@ h1 {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+/* ==================== MOBILE VIDEO OPTIMIZATION ==================== */
+@media (max-width: 768px) {
+  #myVideo {
+    display: none;
+  }
+
+  .background-video-container {
+    background-image: url('../img/bg-product.webp');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 992px) {
   .cards-grid {
