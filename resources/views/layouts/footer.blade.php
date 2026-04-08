@@ -3,7 +3,7 @@
     <div class="footer_wrapper">
         <div class="footer_logo"> 
             <a href="{{ route('home') }}">
-                <img src="{{ asset('img/logo/vist_logo_w.png') }}" alt="Vist Logo">
+                <img src="{{ asset('img/logo/vist_logo_w.webp') }}" alt="Vist Logo" width="200" height="200" loading="lazy">
             </a>
         </div>
 
