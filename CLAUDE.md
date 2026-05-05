@@ -5,8 +5,13 @@
 - Відповідай максимально коротко — економ ресурси і токени
 
 ## Project
-- Laravel 12 + Livewire v3.7.6 + Volt + Tailwind CSS
+- Laravel 11 + Blade Templates + Vite 5
+- PHP 8.3 (local: `C:/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe`)
+- CSS: кастомні файли (без Tailwind) — header.css, index.css, product-card.css, about-us.css, support.css, footer.css
+- JS: кастомний `public/js/app.js` + Axios
+- Пакети: artesaos/seotools, spatie/laravel-sitemap
 - URL: http://vist-laravel.test
+- Production: https://vist.net.ua
 - Original PHP site for reference: "D:\My projects v1.1\Vist"
 
 ## Deployment (Hostinger)
